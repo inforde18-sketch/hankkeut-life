@@ -1,8 +1,8 @@
 {
   "name": "한끗생활",
   "tagline": "알아두면 달라지는 하루",
-  "url": "",
-  "publicLaunch": false,
+  "url": "https://hankkeut-life.pages.dev",
+  "publicLaunch": true,
   "contactEmail": "",
   "contactUrl": "https://github.com/inforde18-sketch/hankkeut-life/issues",
   "operatorName": "한끗생활",
