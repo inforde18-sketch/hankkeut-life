@@ -38,5 +38,6 @@ def make(path,title,category,size):
     im.save(path,quality=92)
 make(root/'assets/share.png','매일의 생활에, 쓸모 있는 한 끗.','한끗생활 · 생활 가이드',(1200,630))
 posts=json.loads((root/'content/articles.json').read_text(encoding='utf-8'))
+posts+=json.loads((root/'content/queue.json').read_text(encoding='utf-8'))
 for p in posts:make(root/'assets/social'/f"{p['slug']}.jpg",p['title'],p['category'],(1080,1350))
 print('Created 1 share image and '+str(len(posts))+' Instagram JPEG cards. Network calls: 0.')
