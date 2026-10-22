@@ -1,43 +1,101 @@
-"""Optional asset regeneration: Python + Pillow; no network or paid service."""
+"""Render the site's original graphic system. Pillow only; no network or paid API."""
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 import json
-root=Path(__file__).resolve().parent.parent
-font_path=Path('C:/Windows/Fonts/malgun.ttf')
-bold_path=Path('C:/Windows/Fonts/malgunbd.ttf')
-if not font_path.exists():
-    raise SystemExit('기본 이미지는 이미 포함되어 있습니다. 재생성하려면 이 스크립트의 한글 글꼴 경로를 수정하세요.')
-def font(n,bold=False):return ImageFont.truetype(str(bold_path if bold else font_path),n)
-def wrap(draw,text,f,width):
-    lines=[];line=''
-    for ch in text:
-        if draw.textlength(line+ch,font=f)>width and line:lines.append(line);line=ch
-        else:line+=ch
-    if line:lines.append(line)
-    return lines
-def make(path,title,category,size):
-    w,h=size;im=Image.new('RGB',size,'#124c42');d=ImageDraw.Draw(im)
-    for x in range(0,w,60):d.line((x,0,x,h),fill='#1b5448')
-    for y in range(0,h,60):d.line((0,y,w,y),fill='#1b5448')
-    d.rounded_rectangle((58,50,194,92),radius=21,fill='#d6ec9a')
-    d.text((78,58),'생활의 한 끗',font=font(19,True),fill='#124c42')
-    d.text((62,132),category,font=font(24),fill='#c1d8bc')
-    titlefont=font(62 if h>700 else 53,True)
-    lines=wrap(d,title,titlefont,w-130)
-    y=205 if h>700 else 210
-    for line in lines:d.text((60,y),line,font=titlefont,fill='#ffffff');y+=92 if h>700 else 79
-    if h>700:
-        d.rounded_rectangle((60,730,w-60,1030),radius=20,fill='#d6ec9a')
-        d.text((98,775),'복잡한 정보는 덜고,',font=font(42,True),fill='#124c42')
-        d.text((98,845),'지금 필요한 방법만.',font=font(42,True),fill='#124c42')
-        d.text((98,947),'공식 출처와 함께 읽는 생활 가이드',font=font(22),fill='#43674e')
-    d.line((60,h-125,w-60,h-125),fill='#53806a',width=2)
-    d.text((60,h-97),'한끗생활',font=font(30,True),fill='#d6ec9a')
-    d.text((w-400,h-88),'알아두면 달라지는 하루',font=font(22),fill='#c1d8bc')
-    path.parent.mkdir(parents=True,exist_ok=True)
-    im.save(path,quality=92)
-make(root/'assets/share.png','매일의 생활에, 쓸모 있는 한 끗.','한끗생활 · 생활 가이드',(1200,630))
+
+root = Path(__file__).resolve().parent.parent
+regular = Path('C:/Windows/Fonts/malgun.ttf')
+bold = Path('C:/Windows/Fonts/malgunbd.ttf')
+if not regular.exists():
+    raise SystemExit('Pre-rendered images are included. Regeneration needs Malgun Gothic.')
+GREEN, LIME, WHITE, MUTED, CORAL = '#124c42', '#d5ec92', '#f5f6eb', '#c1d8bc', '#ff9b78'
+
+def font(n, heavy=False):
+    return ImageFont.truetype(str(bold if heavy else regular), n)
+
+def fitted(lines, maximum, width):
+    for n in range(maximum, 25, -1):
+        f = font(n, True)
+        if all(f.getlength(line) <= width for line in lines):
+            return f, n
+    raise ValueError('Thumbnail text does not fit')
+
+def icon(draw, art, x, y, size):
+    """Original line art, without actual screenshots or working QR codes."""
+    def p(a,b): return (round(x+a*size/200),round(y+b*size/200))
+    def box(a,b,c,d): return (*p(a,b),*p(c,d))
+    lw=max(3,round(size/26))
+    draw.ellipse(box(0,0,200,200),fill='#225d50')
+    if art=='storage':
+        draw.rounded_rectangle(box(52,22,148,177),radius=round(size/16),outline=LIME,width=lw)
+        draw.line((p(82,37),p(118,37)),fill=LIME,width=lw)
+        draw.rounded_rectangle(box(68,62,132,122),radius=4,fill=LIME)
+        draw.ellipse(box(79,73,94,88),fill=GREEN)
+        draw.polygon([p(69,116),p(95,90),p(111,105),p(132,82),p(132,122),p(69,122)],fill=GREEN)
+        draw.line((p(84,157),p(116,157)),fill=LIME,width=lw)
+    elif art=='qr':
+        for a,b in [(43,43),(113,43),(43,113)]:
+            draw.rectangle(box(a,b,a+43,b+43),outline=LIME,width=lw)
+        for a,b in [(115,115),(142,115),(115,142),(143,144),(91,94)]:
+            draw.rectangle(box(a,b,a+12,b+12),fill=LIME)
+    elif art=='password':
+        draw.arc(box(66,34,134,114),180,360,fill=LIME,width=lw)
+        draw.rounded_rectangle(box(43,86,157,164),radius=round(size/20),outline=LIME,width=lw)
+        for a in [66,94,122]: draw.ellipse(box(a,118,a+13,131),fill=LIME)
+    elif art=='shield':
+        draw.polygon([p(100,26),p(159,51),p(150,119),p(127,153),p(100,176),p(73,153),p(50,119),p(41,51)],outline=LIME,width=lw)
+        draw.line([p(70,99),p(92,121),p(134,76)],fill=LIME,width=lw)
+    else:
+        draw.rounded_rectangle(box(31,47,169,155),radius=8,outline=LIME,width=lw)
+        draw.line((p(31,76),p(169,76)),fill=LIME,width=lw)
+        for a in [47,62,77]: draw.ellipse(box(a,59,a+5,64),fill=LIME)
+        draw.arc(box(72,88,130,139),30,300,fill=LIME,width=lw)
+
+def make(post, shape):
+    portrait=shape=='portrait'
+    w,h=(1080,1350) if portrait else (1200,630)
+    im=Image.new('RGB',(w,h),GREEN);d=ImageDraw.Draw(im)
+    for x in range(0,w,90):d.line((x,0,x,h),fill='#195347')
+    for y in range(0,h,90):d.line((0,y,w,y),fill='#195347')
+    pad=68 if portrait else 60
+    d.text((pad,48 if portrait else 28),'한끗생활',font=font(31 if portrait else 26,True),fill=LIME)
+    label=post.get('thumbnailTag',post['category'])
+    tagfont=font(24 if portrait else 20,True)
+    tw=d.textlength(label,font=tagfont)+42
+    ty=150 if portrait else 103
+    d.rounded_rectangle((pad,ty,pad+tw,ty+(49 if portrait else 42)),radius=21,fill=LIME)
+    d.text((pad+21,ty+7),label,font=tagfont,fill=GREEN)
+    lines=post.get('thumbnailLines',[post['title']])
+    textwidth=w-pad*2 if portrait else 855
+    f,n=fitted(lines,116 if portrait else 91,textwidth)
+    y=280 if portrait else 189
+    for i,line in enumerate(lines):
+        d.text((pad,y),line,font=f,fill=WHITE if i==0 else LIME,stroke_width=1)
+        y+=n+36 if portrait else n+21
+    if portrait:
+        icon(d,post['art'],736,690,260)
+        d.text((pad,724),'먼저 확인하고,',font=font(43,True),fill=WHITE)
+        d.text((pad,795),'그다음 바꾸세요.',font=font(43,True),fill=WHITE)
+        caption=post.get('thumbnailCaption',post['takeaway'])
+        cf,_=fitted([caption],34,w-pad*2-60)
+        d.rounded_rectangle((pad,1040,w-pad,1168),radius=24,fill='#204d42')
+        d.rectangle((pad,1068,pad+6,1138),fill=CORAL)
+        d.text((pad+28,1080),caption,font=cf,fill=WHITE)
+        d.line((pad,1232,w-pad,1232),fill='#56816c',width=2)
+        d.text((pad,1260),'확인 순서와 공식 출처는 본문에',font=font(26),fill=MUTED)
+    else:
+        icon(d,post['art'],931,225,210)
+        caption=post.get('thumbnailCaption',post['takeaway'])
+        cf,_=fitted([caption],31,w-pad*2-30)
+        d.line((pad,482,w-pad,482),fill='#56816c',width=2)
+        d.rectangle((pad,519,pad+6,564),fill=CORAL)
+        d.text((pad+24,521),caption,font=cf,fill=WHITE)
+    return im
+
 posts=json.loads((root/'content/articles.json').read_text(encoding='utf-8'))
 posts+=json.loads((root/'content/queue.json').read_text(encoding='utf-8'))
-for p in posts:make(root/'assets/social'/f"{p['slug']}.jpg",p['title'],p['category'],(1080,1350))
-print('Created 1 share image and '+str(len(posts))+' Instagram JPEG cards. Network calls: 0.')
+target=root/'assets/social';target.mkdir(exist_ok=True,parents=True)
+for post in posts:
+    make(post,'portrait').save(target/(post['slug']+'.jpg'),quality=94,optimize=True)
+    make(post,'landscape').save(target/('preview-'+post['slug']+'.jpg'),quality=94,optimize=True)
+print(f'Created {len(posts)} portrait cards + {len(posts)} link previews. Network calls: 0.')

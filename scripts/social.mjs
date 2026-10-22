@@ -7,7 +7,7 @@ const arg=k=>args[args.indexOf(k)+1];
 const slug=args.includes('--slug')?arg('--slug'):null;
 const channel=args.includes('--channel')?arg('--channel'):null;
 const publicUrl=base&&/^https:\/\//.test(base);
-const batch=posts.filter(p=>p.status==='published'&&(!slug||p.slug===slug)).map(p=>({slug:p.slug,title:p.title,facebook:`${p.title}\n\n${p.takeaway}\n\n자세한 확인 순서와 공식 출처는 본문에서 확인하세요.`,instagram:`${p.title}\n\n${p.takeaway}\n\n전체 가이드는 프로필의 사이트 링크에서 확인하세요.\n#한끗생활 #생활팁 #디지털생활`,link:publicUrl?`${base}/articles/${p.slug}/`:null,image:publicUrl?`${base}/assets/social/${p.slug}.jpg`:null}));
+const batch=posts.filter(p=>p.status==='published'&&(!slug||p.slug===slug)).map(p=>({slug:p.slug,title:p.title,hook:p.socialHook||p.title,facebook:`${p.socialHook||p.title}\n\n${p.takeaway}\n\n자세한 확인 순서와 공식 출처는 본문에서 확인하세요.`,instagram:`${p.socialHook||p.title}\n\n${p.takeaway}\n\n전체 가이드: ${base}/articles/${p.slug}/\n프로필 소개의 사이트 주소에서도 찾을 수 있습니다.\n#한끗생활 #생활팁 #디지털생활`,link:publicUrl?`${base}/articles/${p.slug}/`:null,image:publicUrl?`${base}/assets/social/${p.slug}.jpg`:null}));
 if(!send){await mkdir('social-export',{recursive:true});await writeFile('social-export/posts.json',JSON.stringify(batch,null,2)+'\n');console.log(`${batch.length}개 SNS 문구를 social-export/posts.json에 저장했습니다. 외부 게시: 0.`);process.exit(0)}
 if(!config.social.enabled||!config.publicLaunch||!publicUrl)throw Error('공개 사이트와 SNS 계정 연결 후 사용할 수 있습니다.');
 if(!slug||!['facebook','instagram'].includes(channel)||batch.length!==1)throw Error('--slug와 --channel facebook|instagram을 지정하세요.');
