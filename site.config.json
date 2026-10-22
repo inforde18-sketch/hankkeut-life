@@ -1,0 +1,13 @@
+{
+  "name": "한끗생활",
+  "tagline": "알아두면 달라지는 하루",
+  "url": "",
+  "publicLaunch": false,
+  "contactEmail": "",
+  "operatorName": "",
+  "dailyPublishLimit": 1,
+  "paidAIEnabled": false,
+  "monthlyAIBudgetKRW": 0,
+  "ads": {"enabled": false, "client": "", "slot": "", "consentReady": false},
+  "social": {"enabled": false, "facebook": "", "instagram": ""}
+}

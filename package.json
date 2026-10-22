@@ -1,0 +1,14 @@
+{
+  "name": "hankkeut-life",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "preview": "node scripts/serve.mjs",
+    "publish-due": "node scripts/publish-due.mjs",
+    "social": "node scripts/social.mjs"
+  },
+  "engines": {"node": ">=22"}
+}
