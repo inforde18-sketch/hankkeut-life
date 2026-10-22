@@ -9,6 +9,6 @@
   "dailyPublishLimit": 1,
   "paidAIEnabled": false,
   "monthlyAIBudgetKRW": 0,
-  "ads": {"enabled": false, "client": "", "slot": "", "consentReady": false},
+  "ads": {"enabled": false, "client": "ca-pub-7472830415031001", "slot": "", "consentReady": false},
   "social": {"enabled": false, "facebook": "", "instagram": ""}
 }
