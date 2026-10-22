@@ -1,0 +1,39 @@
+name: Free scheduled publishing
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 23 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: free-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    # 무료 표준 Linux 실행 환경만 사용. 공개 저장소에서 무료.
+    # 공개 저장소에서만 실행해 비공개 저장소 실행 시간 과금을 방지합니다.
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Publish reviewed posts due today (KST)
+        run: node scripts/publish-due.mjs
+      - name: Validate and build
+        run: |
+          node scripts/build.mjs
+          node scripts/check.mjs
+      - name: Record publisher health
+        run: node -e "require('fs').writeFileSync('content/publisher-health.json', JSON.stringify({checkedAt:new Date().toISOString(),status:'ok',paidApiCalls:0},null,2)+'\n')"
+      - name: Save published content
+        run: |
+          if [ -n "$(git status --porcelain -- content/articles.json content/queue.json content/publisher-health.json)" ]; then
+            git config user.name 'hankkeut-publisher'
+            git config user.email 'publisher@users.noreply.github.com'
+            git add content/articles.json content/queue.json content/publisher-health.json
+            git commit -m 'Run free scheduled publisher'
+            git push
+          fi
