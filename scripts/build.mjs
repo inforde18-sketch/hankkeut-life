@@ -13,6 +13,7 @@ const base=origin.replace(/\/$/,'');
 if(config.publicLaunch&&(!base||!(config.contactEmail||config.contactUrl)||!config.operatorName))throw Error('공개 전 사이트 주소, 운영자 표시명, 문의 채널이 필요합니다.');
 if(config.contactUrl&&!/^https:\/\/github\.com\/inforde18-sketch\/hankkeut-life\/issues\/?$/.test(config.contactUrl))throw Error('확인된 문의 채널 주소를 사용하세요.');
 if(config.ads.enabled)throw Error('광고는 아직 연결되지 않았습니다. AdSense 승인과 개인정보·동의 설정을 완료한 뒤 광고 모듈을 추가하세요.');
+if(config.ads.client&&!/^ca-pub-\d{16}$/.test(config.ads.client))throw Error('올바른 Google AdSense 게시자 번호가 필요합니다.');
 const dist=resolve('dist');
 if(dirname(dist)!==process.cwd())throw Error('잘못된 출력 경로');
 await rm(dist,{recursive:true,force:true});await mkdir(dist,{recursive:true});
@@ -43,6 +44,7 @@ contact:{title:'문의와 정정 요청',label:'연락하기',html:`<p class="de
 };
 for(const [slug,p] of Object.entries(policies)){await mkdir(resolve(dist,slug),{recursive:true});await writeFile(resolve(dist,slug,'index.html'),shell({title:p.title,description:p.title,path:'/'+slug+'/',body:`<main id="main" class="wrap policy"><span class="eyebrow">${p.label}</span><h1>${p.title}</h1><div class="article-body">${p.html}</div></main>`}));}
 await writeFile(resolve(dist,'404.html'),shell({title:'페이지를 찾을 수 없습니다',description:'다른 생활 가이드를 찾아보세요.',body:'<main id="main" class="wrap policy"><span class="eyebrow">404</span><h1>이 페이지는 찾지 못했어요.</h1><p>주소를 확인하거나 최신 가이드를 살펴보세요.</p><a class="primary-link" href="/">홈으로 돌아가기 →</a></main>'}));
+if(config.ads.client)await writeFile(resolve(dist,'ads.txt'),`google.com, ${config.ads.client.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`);
 await writeFile(resolve(dist,'robots.txt'),config.publicLaunch?`User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`:'User-agent: *\nDisallow: /\n');
 const paths=['/','/about/','/editorial/','/privacy/','/contact/',...posts.map(p=>'/articles/'+p.slug+'/')];
 await writeFile(resolve(dist,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${base?paths.map(p=>`<url><loc>${esc(base+p)}</loc></url>`).join(''):''}</urlset>`);
