@@ -1,4 +1,4 @@
-import articles from '../../content/articles.json' with { type: 'json' };
+import articles from '../../content/articles.json';
 
 const published = new Map(articles.filter((post) => post.status === 'published').map((post) => [post.slug, post.date]));
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
