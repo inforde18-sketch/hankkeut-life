@@ -17,6 +17,7 @@ function blockedText(value) {
 }
 const tenMinutes = 10 * 60;
 const maxBytes = 4096;
+const reportReasons = new Set(['내용 오류', '댓글 문제', '개인정보 노출', '기타']);
 
 function respond(data, status = 200, headers = {}) {
   return Response.json(data, {
@@ -50,6 +51,36 @@ async function readSubmission(request) {
   }
 }
 
+async function submitReport(db, article, data) {
+  const { id, reason, commentId, note, website } = data || {};
+  if (typeof id !== 'string' || !uuidPattern.test(id) || !reportReasons.has(reason) ||
+      typeof commentId !== 'string' || typeof note !== 'string' || website !== '' ||
+      (commentId && !uuidPattern.test(commentId)) || (reason === '댓글 문제' && !commentId)) {
+    return respond({ message: '신고 항목과 대상을 확인해 주세요.' }, 400);
+  }
+  const text = note.replace(/\r\n?/g, '\n').normalize('NFC').trim();
+  if (text.length > 300 || invisibleControls.test(text) || personalInfo.test(text.normalize('NFKC'))) {
+    return respond({ message: '연락처나 개인정보를 빼고 300자 이내로 입력해 주세요.' }, 400);
+  }
+  const now = Math.floor(Date.now() / 1000);
+  const target = commentId.toLowerCase();
+  const key = id.toLowerCase();
+  const { meta } = await db.prepare(`
+    INSERT INTO reports (id, article, comment_id, reason, note, created_at)
+    SELECT ?, ?, ?, ?, ?, ?
+    WHERE (? = '' OR EXISTS (SELECT 1 FROM comments WHERE id = ? AND article = ? AND hidden = 0))
+      AND (SELECT COUNT(*) FROM reports WHERE created_at >= ?) < 40
+      AND (SELECT COUNT(*) FROM reports WHERE article = ? AND created_at >= ?) < 8
+    ON CONFLICT(id) DO NOTHING
+  `).bind(key, article, target, reason, text, now, target, target, article, now - tenMinutes, article, now - tenMinutes).run();
+  if (meta.changes) return respond({ message: '신고를 비공개로 접수했습니다.' }, 201);
+  const existing = await db.prepare('SELECT article, comment_id, reason, note FROM reports WHERE id = ?').bind(key).first();
+  if (existing && existing.article === article && existing.comment_id === target && existing.reason === reason && existing.note === text) {
+    return respond({ message: '신고를 비공개로 접수했습니다.' });
+  }
+  return respond({ message: '대상을 확인하거나 잠시 뒤 다시 시도해 주세요.' }, 429);
+}
+
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
   const article = url.searchParams.get('article') || '';
@@ -63,10 +94,12 @@ export async function onRequest({ request, env }) {
 
   const db = env.COMMENTS_DB;
   if (!db) return respond({ message: '댓글을 잠시 이용할 수 없습니다.' }, 503);
+  const isReport = url.searchParams.get('report') === '1';
+  if (isReport && request.method !== 'POST') return respond({ message: '신고 양식을 사용해 주세요.' }, 405, { Allow: 'POST' });
   try {
     if (request.method === 'GET') {
       const { results } = await db.prepare(
-        'SELECT nickname, body, created_at FROM comments WHERE article = ? AND hidden = 0 ORDER BY created_at DESC, id DESC LIMIT 50',
+        'SELECT id, nickname, body, created_at FROM comments WHERE article = ? AND hidden = 0 ORDER BY created_at DESC, id DESC LIMIT 50',
       ).bind(article).all();
       return respond({ comments: results });
     }
@@ -77,6 +110,7 @@ export async function onRequest({ request, env }) {
     }
 
     const data = await readSubmission(request);
+    if (isReport) return await submitReport(db, article, data);
     if (!data || typeof data.nickname !== 'string' || typeof data.body !== 'string' ||
         typeof data.id !== 'string' || !uuidPattern.test(data.id) || data.website !== '') {
       return respond({ message: '댓글 양식을 확인해 주세요.' }, 400);
@@ -122,6 +156,7 @@ export async function onRequest({ request, env }) {
     }
     return respond({ message: '같은 댓글을 이미 등록했거나 등록이 잠시 제한됐습니다. 잠시 후 다시 시도해 주세요.' }, 429);
   } catch {
+    if (isReport) return respond({ message: '신고를 잠시 접수할 수 없습니다. 잠시 후 다시 시도해 주세요.' }, 503);
     return respond({ message: '댓글을 잠시 이용할 수 없습니다. 잠시 후 다시 시도해 주세요.' }, 503);
   }
 }
