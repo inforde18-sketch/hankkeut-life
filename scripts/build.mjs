@@ -2,6 +2,7 @@ import {readFile,writeFile,mkdir,cp,rm,readdir} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
+import {buildGuideIllustration} from './guide-illustrations.mjs';
 process.chdir(resolve(dirname(fileURLToPath(import.meta.url)),'..'));
 export const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const config=JSON.parse(await readFile('site.config.json','utf8'));
@@ -43,10 +44,14 @@ const settingExamples={
   'windows-clipboard-pinned-items':[1,'guide-example-windows-clipboard.svg',360,236,'Windows 키와 V로 연 클립보드의 예시 항목에 고정 표시가 있는 그림','고정한 항목은 클립보드 기록에서 ‘모두 지우기’를 눌러도 남습니다.'],
   'qr-check-before-open':[1,'guide-example-qr-address.svg',360,230,'QR 미리보기 주소 https://example.com/parcel에서 example.com 부분을 강조한 예시','QR 링크를 열기 전에 표시된 웹사이트 이름과 공식 주소의 철자를 비교하세요.'],
 };
-const settingExample=(post,index)=>{
+const guideIllustration=post=>{
   const example=settingExamples[post.slug];
-  if(!example||example[0]!==index||!guideFiles.has(example[1]))return '';
-  const [,file,width,height,alt,caption]=example;
+  if(!example||!guideFiles.has(example[1]))return buildGuideIllustration(post,esc);
+  const [section,file,width,height,alt,caption]=example;
+  return {section,file,width,height,alt,caption};
+};
+const guideIllustrationHtml=({section,file,width,height,alt,caption},index)=>{
+  if(section!==index)return '';
   return `<figure class="guide-example"><img src="/assets/${esc(file)}" width="${width}" height="${height}" alt="${esc(alt)}" loading="lazy"><figcaption>${esc(caption)}</figcaption></figure>`;
 };
 const commentsHtml = (post) => `<section class="article-comments" data-comments="${esc(post.slug)}" aria-labelledby="comments-heading">
@@ -151,7 +156,9 @@ const relatedGuides=post=>{
 
 for(const p of posts){
 const path='/articles/'+p.slug+'/';
-const body=`<main id="main" class="wrap article-layout reader-layout"><article class="article"><div class="breadcrumb"><a href="/">홈</a><span>/</span><a href="/topics/${topicPaths[p.category]}/">${esc(p.category)}</a></div><div class="article-labels"><span class="category">${esc(p.category)}</span>${deviceBadge(p)}</div><h1>${esc(p.title)}</h1>${quickGuide(p)}<p class="dek">${esc(p.summary)}</p><div class="byline"><span class="author-icon">ㅎ</span><span>한끗생활 편집<span class="byline-sub">AI 작성 지원 · 공식 출처 확인</span></span><time datetime="${p.date}">${p.date.replaceAll('-','.')} · ${p.minutes}분 읽기</time></div>${guideImage(p,'article-guide-image')}${guideNotes[p.slug]?`<p class="guide-scope"><strong>이 글의 범위</strong> ${esc(guideNotes[p.slug].scope)}</p>`:''}<nav class="toc" aria-label="이 글의 순서"><strong>이 글의 순서</strong><ol>${p.sections.map((s,i)=>`<li><a href="#section-${i}">${esc(s.heading)}</a></li>`).join('')}${guideNotes[p.slug]?'<li><a href="#guide-notes">상황별 비교표와 적용 예시</a></li>':''}</ol></nav><div class="article-body">${p.sections.map((s,i)=>`<section id="section-${i}"><h2>${esc(s.heading)}</h2>${s.paragraphs.map(t=>`<p>${esc(t)}</p>`).join('')}${settingExample(p,i)}</section>`).join('')}</div>${noteHtml(p)}<section class="checklist"><span class="eyebrow">TRY IT TODAY</span><h2>읽었다면, 하나씩 체크</h2><p>체크는 이 기기에만 저장됩니다.</p>${p.checklist.map((c,i)=>`<label><input type="checkbox" data-check="${p.slug}-${i}"><span>${esc(c)}</span></label>`).join('')}</section><section class="sources"><h2>출처와 확인 기준</h2><p>공식 안내를 바탕으로 한끗생활이 한국어로 재구성한 가이드입니다. 정리 순서 등 편집부 제안은 본문에 구분했습니다. 화면과 기능은 기기·버전에 따라 다를 수 있습니다.</p><ul>${p.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><span>내용 확인 ${esc(s.checked)}</span></li>`).join('')}</ul><a class="text-link" data-open-report href="#report-guide">내용이 달라졌나요? 정정 요청 →</a></section><div class="share-row"><strong>함께 알아두면 좋으니까</strong><button type="button" data-share>공유하기 ↗</button><button type="button" data-copy>링크 복사</button><button type="button" data-save="${p.slug}" aria-pressed="false">글 저장</button></div>${relatedGuides(p)}${commentsHtml(p)}</article></main>`;
+const illustration=guideIllustration(p);
+if(illustration.svg)await writeFile(resolve(dist,'assets',illustration.file),illustration.svg);
+const body=`<main id="main" class="wrap article-layout reader-layout"><article class="article"><div class="breadcrumb"><a href="/">홈</a><span>/</span><a href="/topics/${topicPaths[p.category]}/">${esc(p.category)}</a></div><div class="article-labels"><span class="category">${esc(p.category)}</span>${deviceBadge(p)}</div><h1>${esc(p.title)}</h1>${quickGuide(p)}<p class="dek">${esc(p.summary)}</p><div class="byline"><span class="author-icon">ㅎ</span><span>한끗생활 편집<span class="byline-sub">AI 작성 지원 · 공식 출처 확인</span></span><time datetime="${p.date}">${p.date.replaceAll('-','.')} · ${p.minutes}분 읽기</time></div>${guideImage(p,'article-guide-image')}${guideNotes[p.slug]?`<p class="guide-scope"><strong>이 글의 범위</strong> ${esc(guideNotes[p.slug].scope)}</p>`:''}<nav class="toc" aria-label="이 글의 순서"><strong>이 글의 순서</strong><ol>${p.sections.map((s,i)=>`<li><a href="#section-${i}">${esc(s.heading)}</a></li>`).join('')}${guideNotes[p.slug]?'<li><a href="#guide-notes">상황별 비교표와 적용 예시</a></li>':''}</ol></nav><div class="article-body">${p.sections.map((s,i)=>`<section id="section-${i}"><h2>${esc(s.heading)}</h2>${s.paragraphs.map(t=>`<p>${esc(t)}</p>`).join('')}${guideIllustrationHtml(illustration,i)}</section>`).join('')}</div>${noteHtml(p)}<section class="checklist"><span class="eyebrow">TRY IT TODAY</span><h2>읽었다면, 하나씩 체크</h2><p>체크는 이 기기에만 저장됩니다.</p>${p.checklist.map((c,i)=>`<label><input type="checkbox" data-check="${p.slug}-${i}"><span>${esc(c)}</span></label>`).join('')}</section><section class="sources"><h2>출처와 확인 기준</h2><p>공식 안내를 바탕으로 한끗생활이 한국어로 재구성한 가이드입니다. 정리 순서 등 편집부 제안은 본문에 구분했습니다. 화면과 기능은 기기·버전에 따라 다를 수 있습니다.</p><ul>${p.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ↗</a><span>내용 확인 ${esc(s.checked)}</span></li>`).join('')}</ul><a class="text-link" data-open-report href="#report-guide">내용이 달라졌나요? 정정 요청 →</a></section><div class="share-row"><strong>함께 알아두면 좋으니까</strong><button type="button" data-share>공유하기 ↗</button><button type="button" data-copy>링크 복사</button><button type="button" data-save="${p.slug}" aria-pressed="false">글 저장</button></div>${relatedGuides(p)}${commentsHtml(p)}</article></main>`;
 await mkdir(resolve(dist,'articles',p.slug),{recursive:true});await writeFile(resolve(dist,'articles',p.slug,'index.html'),shell({title:p.title,description:p.summary,path,body,post:p}));
 }
 const snsPath='/sns/';
