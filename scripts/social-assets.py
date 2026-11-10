@@ -97,5 +97,7 @@ posts+=json.loads((root/'content/queue.json').read_text(encoding='utf-8'))
 target=root/'assets/social';target.mkdir(exist_ok=True,parents=True)
 for post in posts:
     make(post,'portrait').save(target/(post['slug']+'.jpg'),quality=94,optimize=True)
-    make(post,'landscape').save(target/('preview-'+post['slug']+'.jpg'),quality=94,optimize=True)
+    preview = make(post,'landscape')
+    preview.save(target/('preview-'+post['slug']+'.jpg'),quality=94,optimize=True)
+    preview.resize((640,336),Image.Resampling.LANCZOS).save(target/('preview-small-'+post['slug']+'.jpg'),quality=85,optimize=True)
 print(f'Created {len(posts)} portrait cards + {len(posts)} link previews. Network calls: 0.')

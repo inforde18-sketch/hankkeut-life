@@ -11,6 +11,18 @@ CREATE INDEX IF NOT EXISTS comments_public ON comments (article, hidden, created
 CREATE INDEX IF NOT EXISTS comments_recent ON comments (created_at);
 CREATE INDEX IF NOT EXISTS comments_article_recent ON comments (article, created_at);
 
+CREATE TABLE IF NOT EXISTS reports (
+  id TEXT PRIMARY KEY NOT NULL,
+  article TEXT NOT NULL,
+  comment_id TEXT NOT NULL,
+  reason TEXT NOT NULL CHECK (reason IN ('내용 오류', '댓글 문제', '개인정보 노출', '기타')),
+  note TEXT NOT NULL CHECK (length(note) <= 300),
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS reports_recent ON reports (created_at);
+CREATE INDEX IF NOT EXISTS reports_article_recent ON reports (article, created_at);
+
 -- 운영자는 Cloudflare D1 Console에서 댓글 ID를 확인한 뒤 특정 댓글을 숨길 수 있습니다.
 -- SELECT id, article, nickname, body FROM comments WHERE hidden = 0 ORDER BY created_at DESC LIMIT 20;
 -- UPDATE comments SET hidden = 1 WHERE id = '확인한 댓글 ID';
+-- SELECT id, article, comment_id, reason, note, datetime(created_at,'unixepoch','+9 hours') AS received_kst FROM reports ORDER BY created_at DESC LIMIT 30;
