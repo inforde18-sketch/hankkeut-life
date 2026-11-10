@@ -39,3 +39,7 @@
 .article-comments li { border-top: 1px solid #d7dfd3; padding: .8rem 0; }
 .article-comments li time { margin-inline-start: .65rem; color: #405e52; font-size: .875rem; }
 .article-comments li p { margin: .35rem 0 0; white-space: pre-wrap; }
+.article-comments details { margin-top: 1rem; }
+.article-comments summary { cursor: pointer; min-height: 44px; padding-block: .65rem; font-weight: 700; }
+.article-comments select { width: 100%; min-height: 44px; border: 1px solid #9aaea6; border-radius: .45rem; background: white; color: inherit; font: inherit; }
+.article-comments .comment-report { margin-top: .4rem; background: transparent; color: #124c42; text-decoration: underline; font-size: .9rem; min-height: 44px; padding-inline: 0; }

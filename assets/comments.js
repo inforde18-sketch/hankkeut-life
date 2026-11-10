@@ -8,7 +8,56 @@ if (section) {
   const submit = form.querySelector('button');
   const url = '/api/comments?article=' + encodeURIComponent(section.dataset.comments);
   const dateFormat = new Intl.DateTimeFormat('ko-KR', { dateStyle: 'medium', timeZone: 'Asia/Seoul' });
+  const reportPanel = section.querySelector('#report-guide');
+  const reportForm = reportPanel?.querySelector('form');
+  let commentTarget = '';
+  let lastReport;
   let lastSubmission;
+
+  function openReport(id = '') {
+    if (!reportForm) return;
+    commentTarget = id;
+    reportForm.querySelector('[data-report-target]').textContent = id ? '신고 대상: 선택한 댓글' : '신고 대상: 이 글';
+    reportForm.elements.reason.value = id ? '댓글 문제' : '내용 오류';
+    reportForm.querySelector('[data-report-status]').textContent = '';
+    reportPanel.open = true;
+    reportForm.querySelector('[name="reason"]').focus();
+  }
+
+  if (reportForm) {
+    reportPanel.hidden = false;
+    reportPanel.addEventListener('toggle', () => {
+      if (reportPanel.open) return;
+      commentTarget = '';
+      reportForm.querySelector('[data-report-target]').textContent = '신고 대상: 이 글';
+      reportForm.elements.reason.value = '내용 오류';
+    });
+    document.querySelector('[data-open-report]')?.addEventListener('click', event => { event.preventDefault(); openReport(); });
+    reportForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const button = reportForm.querySelector('button');
+      const status = reportForm.querySelector('[data-report-status]');
+      if (button.disabled) return;
+      const { reason, note, website } = Object.fromEntries(new FormData(reportForm));
+      const data = { reason, note, website, commentId: commentTarget };
+      const key = JSON.stringify(data);
+      if (lastReport?.key !== key) lastReport = { key, id: crypto.randomUUID() };
+      button.disabled = true;
+      status.textContent = '신고를 보내는 중입니다…';
+      try {
+        const response = await fetch(url + '&report=1', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, id: lastReport.id }),
+        });
+        status.textContent = (await response.json()).message;
+        if (response.ok) reportForm.elements.note.value = '';
+      } catch {
+        status.textContent = '접수 결과를 확인하지 못했습니다. 잠시 뒤 다시 시도해 주세요.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
 
   async function refresh() {
     try {
@@ -26,6 +75,14 @@ if (section) {
         time.textContent = dateFormat.format(date);
         text.textContent = comment.body;
         row.append(name, time, text);
+        if (reportForm && comment.id) {
+          const report = document.createElement('button');
+          report.type = 'button';
+          report.className = 'comment-report';
+          report.textContent = '댓글 신고';
+          report.addEventListener('click', () => openReport(comment.id));
+          row.append(report);
+        }
         return row;
       }));
       listStatus.textContent = comments.length ? '최근 댓글' : '아직 댓글이 없습니다.';

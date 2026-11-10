@@ -23,6 +23,13 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere}.featured-copy>p,.intro>p{wo
 .sns-search{width:100%;margin:0}
 .sns-search input{min-height:44px;min-width:0}
 .sns-search+.post-count{margin:10px 0 0}
+.home-search-cta{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;padding:0 17px;border-radius:5px;background:var(--green);color:white;font-weight:750}
+.article-labels{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.device-badge{font-size:12px;font-weight:750;border:1px solid var(--line);border-radius:20px;padding:3px 8px;background:#edf2e4}
+.guide-example{margin:16px 0 24px}
+.guide-example img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+.guide-example figcaption{font-size:14px;line-height:1.6;color:var(--muted);margin-top:7px}
 @media(max-width:760px){
   .search input{min-height:44px;font-size:16px}
+  .header nav{flex-wrap:wrap;gap:4px 12px;white-space:normal;overflow:visible}
 }
