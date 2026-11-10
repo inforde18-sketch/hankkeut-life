@@ -37,13 +37,17 @@ const deviceBadge=post=>{
   return label?'<span class="device-badge">'+esc(label)+'</span>':'';
 };
 const settingExamples={
-  'gmail-block-vs-unsubscribe':[1,'guide-example-gmail.jpg','Gmail 설정 화면의 필터 및 차단된 주소 탭','Gmail에서 모든 설정을 연 뒤 ‘필터 및 차단된 주소’를 선택하세요.'],
-  'google-docs-version-copy-before-restore':[1,'guide-example-docs.jpg','Google Docs에서 파일 메뉴의 버전 기록으로 이동하는 화면','Google Docs의 파일 메뉴에서 ‘버전 기록’을 열어 이전 버전을 확인할 수 있습니다.'],
+  'gmail-block-vs-unsubscribe':[1,'guide-example-gmail.jpg',372,46,'Gmail 설정 화면의 필터 및 차단된 주소 탭','Gmail에서 모든 설정을 연 뒤 ‘필터 및 차단된 주소’를 선택하세요.'],
+  'google-docs-version-copy-before-restore':[1,'guide-example-docs.jpg',552,78,'Google Docs에서 파일 메뉴의 버전 기록으로 이동하는 화면','Google Docs의 파일 메뉴에서 ‘버전 기록’을 열어 이전 버전을 확인할 수 있습니다.'],
+  'android-app-permission-check':[0,'guide-example-android-permissions.svg',360,224,'Android 설정에서 앱을 선택한 뒤 앱 정보의 권한 메뉴를 누르는 예시','Android 설정에서 앱을 선택한 뒤 ‘권한’을 확인하세요. 메뉴 위치는 기기마다 다를 수 있습니다.'],
+  'windows-clipboard-pinned-items':[1,'guide-example-windows-clipboard.svg',360,236,'Windows 키와 V로 연 클립보드의 예시 항목에 고정 표시가 있는 그림','고정한 항목은 클립보드 기록에서 ‘모두 지우기’를 눌러도 남습니다.'],
+  'qr-check-before-open':[1,'guide-example-qr-address.svg',360,230,'QR 미리보기 주소 https://example.com/parcel에서 example.com 부분을 강조한 예시','QR 링크를 열기 전에 표시된 웹사이트 이름과 공식 주소의 철자를 비교하세요.'],
 };
 const settingExample=(post,index)=>{
   const example=settingExamples[post.slug];
   if(!example||example[0]!==index||!guideFiles.has(example[1]))return '';
-  return '<figure class="guide-example"><img src="/assets/'+esc(example[1])+'" alt="'+esc(example[2])+'" loading="lazy"><figcaption>'+esc(example[3])+'</figcaption></figure>';
+  const [,file,width,height,alt,caption]=example;
+  return `<figure class="guide-example"><img src="/assets/${esc(file)}" width="${width}" height="${height}" alt="${esc(alt)}" loading="lazy"><figcaption>${esc(caption)}</figcaption></figure>`;
 };
 const commentsHtml = (post) => `<section class="article-comments" data-comments="${esc(post.slug)}" aria-labelledby="comments-heading">
   <h2 id="comments-heading">댓글</h2>
