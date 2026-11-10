@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="230" viewBox="0 0 360 230">
+  <title>QR 링크 미리보기에서 웹사이트 주소를 확인하는 위치</title>
+  <rect width="360" height="230" fill="#edf2e4"/>
+  <g font-family="Malgun Gothic, Apple SD Gothic Neo, sans-serif" fill="#143f36">
+    <text x="20" y="33" font-size="22" font-weight="700">QR 링크 미리보기 예시</text>
+    <rect x="18" y="51" width="324" height="101" rx="12" fill="#ffffff" stroke="#96ab9e"/>
+    <rect x="90" y="80" width="176" height="42" rx="6" fill="#d9eea5" stroke="#467146" stroke-width="2"/>
+    <text x="24" y="109" font-size="18" fill="#34564c">https://</text>
+    <text x="102" y="109" font-size="25" font-weight="700">example.com</text>
+    <text x="272" y="109" font-size="18" fill="#34564c">/parcel</text>
+    <path d="M178 127v38m-6-6 6 6 6-6" fill="none" stroke="#124c42" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="180" y="195" text-anchor="middle" font-size="23" font-weight="700">이 부분의 철자를</text>
+    <text x="180" y="220" text-anchor="middle" font-size="22">공식 주소와 비교하세요</text>
+  </g>
+</svg>

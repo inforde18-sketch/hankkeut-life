@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="236" viewBox="0 0 360 236">
+  <title>Windows 클립보드 기록에서 고정한 항목 확인하기</title>
+  <rect width="360" height="236" fill="#edf2e4"/>
+  <g font-family="Malgun Gothic, Apple SD Gothic Neo, sans-serif" fill="#143f36">
+    <text x="20" y="32" font-size="20" font-weight="700">클립보드 화면 예시</text>
+    <rect x="18" y="48" width="324" height="133" rx="12" fill="#ffffff" stroke="#96ab9e"/>
+    <text x="32" y="84" font-size="24" font-weight="700">Windows + V</text>
+    <rect x="30" y="100" width="300" height="63" rx="8" fill="#d9eea5" stroke="#467146" stroke-width="2"/>
+    <text x="44" y="139" font-size="24">예시 문장</text>
+    <g fill="none" stroke="#124c42" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M221 117h14m-12 0v7l-5 5h20l-5-5v-7m-5 12v11"/>
+    </g>
+    <text x="246" y="139" font-size="25" font-weight="700">고정됨</text>
+    <text x="20" y="213" font-size="22" font-weight="700">‘모두 지우기’ 후에도 남아요</text>
+  </g>
+</svg>
