@@ -1,0 +1,14 @@
+{
+  "phone-storage-before-delete": "휴대전화 저장 공간 정리: 삭제 전에 확인할 3가지",
+  "different-passwords": "계정마다 다른 비밀번호를 사용하는 이유와 점검 순서",
+  "google-two-step": "Google 2단계 인증: 설정 전에 확인할 복구 수단",
+  "android-app-permission-check": "Android 카메라·마이크 권한을 앱별로 확인하는 방법",
+  "chrome-site-notifications-check": "PC Chrome 사이트 알림: 허용 목록 확인과 차단 순서",
+  "chrome-download-history-vs-files": "Chrome 다운로드 기록과 실제 파일 삭제의 차이",
+  "gmail-archive-find-again": "Gmail 보관처리한 메일 찾기: 전체보관함과 검색 활용",
+  "chrome-extension-hide-vs-disable": "Chrome 확장 프로그램: 아이콘 숨기기와 사용 중지 구분",
+  "google-docs-version-copy-before-restore": "Google Docs 이전 문장 복구: 버전 보기·사본·전체 복원 비교",
+  "gmail-find-pdf-with-filename": "Gmail PDF 첨부메일 검색: 파일 형식·발신자·날짜 조합",
+  "onedrive-cloud-vs-green-check-offline": "OneDrive 오프라인 파일: 구름과 두 가지 체크 표시 읽기",
+  "edge-tracking-prevention-levels": "Edge 추적 방지 기본·균형·엄격 비교와 페이지 오류 확인"
+}

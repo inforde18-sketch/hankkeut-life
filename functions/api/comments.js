@@ -85,7 +85,8 @@ export async function onRequest({ request, env }) {
   const url = new URL(request.url);
   const article = url.searchParams.get('article') || '';
   const date = published.get(article);
-  if (!slugPattern.test(article) || !date || Date.parse(date + 'T00:00:00+09:00') > Date.now()) {
+  const siteInquiry = article === 'site' && request.method === 'POST' && url.searchParams.get('report') === '1';
+  if (!siteInquiry && (!slugPattern.test(article) || !date || Date.parse(date + 'T00:00:00+09:00') > Date.now())) {
     return respond({ message: '공개된 글의 댓글만 이용할 수 있습니다.' }, 404);
   }
   if (!['GET', 'POST'].includes(request.method)) {
