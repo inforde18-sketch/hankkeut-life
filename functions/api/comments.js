@@ -1,8 +1,10 @@
 import articles from '../../content/articles.json';
+import moderation from '../../content/comment-moderation.json';
 
 const published = new Map(articles.filter((post) => post.status === 'published').map((post) => [post.slug, post.date]));
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const moderatedIds = new Set((moderation.hidden || []).filter(id => typeof id === 'string' && uuidPattern.test(id)).map(id => id.toLowerCase()));
 const nicknamePattern = /^[\p{L}\p{M}\p{N}][\p{L}\p{M}\p{N} _-]*$/u;
 const invisibleControls = /[\u0000-\u0008\u000b-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]/u;
 const links = /(?:https?\s*:\s*\/\/|www\s*\.|\b(?:[a-z0-9-]+\.)+(?:com|net|org|dev|kr|io|me|link|xyz)\b|\b(?:t\.me|bit\.ly|goo\.gl)\b)/iu;
@@ -98,10 +100,15 @@ export async function onRequest({ request, env }) {
   const isReport = url.searchParams.get('report') === '1';
   if (isReport && request.method !== 'POST') return respond({ message: '신고 양식을 사용해 주세요.' }, 405, { Allow: 'POST' });
   try {
+    // Reports are private. Expired records are removed lazily on API use, without logging their contents.
+    await db.prepare('DELETE FROM reports WHERE created_at < ?').bind(Math.floor(Date.now()/1000)-90*24*60*60).run();
     if (request.method === 'GET') {
+      const excluded=[...moderatedIds];
       const { results } = await db.prepare(
-        'SELECT id, nickname, body, created_at FROM comments WHERE article = ? AND hidden = 0 ORDER BY created_at DESC, id DESC LIMIT 50',
-      ).bind(article).all();
+        'SELECT id, nickname, body, created_at FROM comments WHERE article = ? AND hidden = 0'+
+        (excluded.length?' AND id NOT IN ('+excluded.map(()=>'?').join(',')+')':'')+
+        ' ORDER BY created_at DESC, id DESC LIMIT 50',
+      ).bind(article,...excluded).all();
       return respond({ comments: results });
     }
 
@@ -111,13 +118,17 @@ export async function onRequest({ request, env }) {
     }
 
     const data = await readSubmission(request);
-    if (isReport) return await submitReport(db, article, data);
+    if (isReport) {
+      if(typeof data?.commentId==='string' && moderatedIds.has(data.commentId.toLowerCase()))return respond({message:'이미 공개 목록에서 제외된 댓글입니다.'},404);
+      return await submitReport(db, article, data);
+    }
     if (!data || typeof data.nickname !== 'string' || typeof data.body !== 'string' ||
         typeof data.id !== 'string' || !uuidPattern.test(data.id) || data.website !== '') {
       return respond({ message: '댓글 양식을 확인해 주세요.' }, 400);
     }
 
     const id = data.id.toLowerCase();
+    if(moderatedIds.has(id))return respond({message:'운영 검토로 공개가 중지된 댓글입니다.'},409);
     const nickname = data.nickname.normalize('NFKC').trim();
     const body = data.body.replace(/\r\n?/g, '\n').normalize('NFC').trim();
     if (nickname.length < 2 || nickname.length > 20 || !nicknamePattern.test(nickname)) {

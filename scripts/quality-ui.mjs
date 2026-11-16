@@ -6,3 +6,8 @@ export const gmailTool=`<section class="guide-tool" aria-labelledby="query-headi
 export function contactForm(posts,esc){
  return `<section class="guide-tool" aria-labelledby="contact-form-heading"><h2 id="contact-form-heading">가입 없이 비공개 문의하기</h2><p>사이트 오류·글 정정·기능 제안을 운영자에게 보낼 수 있습니다. 문의 내용은 공개되지 않으며 기존 비공개 신고 보관함에 저장됩니다. 이메일·전화번호를 받지 않으므로 개별 답장은 제공하지 않습니다.</p><form data-private-contact><label>관련 글<select name="article"><option value="site">사이트 전체 또는 기타</option>${posts.map(p=>`<option value="${esc(p.slug)}">${esc(p.title)}</option>`).join('')}</select></label><label>문의 유형<select name="reason"><option>내용 오류</option><option>개인정보 노출</option><option>기타</option></select></label><label>내용 (300자 이내)<textarea name="note" maxlength="300" minlength="5" rows="5" required placeholder="문제가 생긴 위치와 상황을 알려주세요. 개인정보·연락처는 쓰지 마세요."></textarea></label><div hidden><label>웹사이트<input name="website" tabindex="-1" autocomplete="off"></label></div><button type="submit">비공개로 보내기</button><p data-contact-status role="status"></p></form><noscript><p>문의 양식에는 자바스크립트가 필요합니다. 아래 공개 게시판도 이용할 수 있습니다.</p></noscript></section>`;
 }
+
+export function verificationHtml(record,esc){
+ if(!record)return '';
+ return `<section class="verified-result article-body" aria-labelledby="verified-heading"><span class="eyebrow">확인 기록</span><h2 id="verified-heading">직접 확인한 범위</h2><p class="guide-caption">${esc(record.date)} · ${esc(record.environment)}</p><ol>${record.steps.map(step=>`<li>${esc(step)}</li>`).join('')}</ol><p><strong>확인 결과:</strong> ${esc(record.result)}</p><p class="guide-caption"><strong>확인하지 않은 범위:</strong> ${esc(record.notTested)}</p></section>`;
+}

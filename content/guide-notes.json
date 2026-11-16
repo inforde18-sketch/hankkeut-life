@@ -510,7 +510,8 @@
       "google-drive-restricted-vs-folder-access",
       "gmail-find-pdf-with-filename"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "gmail-block-vs-unsubscribe": {
     "scope": "컴퓨터용 Gmail. 발신자 차단·정상 뉴스레터 수신 거부·의심 메일 신고를 구분합니다.",
@@ -543,7 +544,8 @@
       "gmail-archive-find-again",
       "gmail-find-pdf-with-filename"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "google-drive-restricted-vs-folder-access": {
     "scope": "컴퓨터용 Google Drive의 파일 공유 창 기준. 공유 드라이브·조직 정책·소유자 권한에 따라 변경할 수 있는 범위가 다릅니다.",
@@ -576,7 +578,8 @@
       "google-docs-version-copy-before-restore",
       "google-connected-apps-review"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "android-update-three-status-lines": {
     "scope": "Android 기기 설정 기준. 제조사·모델·이동통신사별 메뉴와 배포 시점은 다르며 모든 기기를 실측한 안내가 아닙니다.",
@@ -609,7 +612,8 @@
       "android-app-permission-check",
       "android-notification-cleanup"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "firefox-bookmarks-html-vs-restore": {
     "scope": "컴퓨터용 Firefox. 다른 브라우저로 옮기는 HTML 파일과 Firefox의 북마크 백업 복원은 목적이 다릅니다.",
@@ -642,7 +646,8 @@
       "firefox-cache-only",
       "chrome-download-history-vs-files"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "gmail-find-pdf-with-filename": {
     "scope": "컴퓨터용 Gmail 검색. 아래 주소는 모두 example.com 가상 주소이며 실제 개인 정보 입력은 필요하지 않습니다.",
@@ -675,7 +680,8 @@
       "gmail-archive-find-again",
       "gmail-block-vs-unsubscribe"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "edge-tracking-prevention-levels": {
     "scope": "컴퓨터용 Microsoft Edge. 추적 방지와 쿠키 허용은 별도 항목이며 조직 관리 기기는 변경이 제한될 수 있습니다.",
@@ -708,7 +714,8 @@
       "chrome-extension-hide-vs-disable",
       "chrome-incognito-limits"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
   },
   "onedrive-cloud-vs-green-check-offline": {
     "scope": "Windows 파일 탐색기의 OneDrive 파일별 상태 아이콘 기준. 작업 표시줄의 OneDrive 앱 상태와 구분합니다.",
@@ -741,6 +748,210 @@
       "phone-storage-before-delete",
       "chrome-download-history-vs-files"
     ],
-    "updated": "2026-11-16"
+    "updated": "2026-11-16",
+    "includeExample": false
+  },
+  "windows-show-file-name-extensions": {
+    "updated": "2026-11-16",
+    "scope": "실행 파일을 만들거나 열지 않았으며 확장명만으로 악성 여부를 판단하지 않습니다.",
+    "path": "파일 탐색기에서 이름 중간이 아니라 마지막 확장명을 읽기",
+    "heading": "파일 탐색기에서 이름 중간이 아니라 마지막 확장명을 읽기",
+    "rows": [
+      [
+        "이름 끝이 안 보임",
+        "보기 → 표시 → 파일 확장명",
+        "창이 좁으면 이름 열도 넓히기"
+      ],
+      [
+        "이름 중간에 .pdf가 있음",
+        "가장 마지막 확장명 읽기",
+        "PDF처럼 보인다는 이유로 실행하지 않기"
+      ],
+      [
+        "형식을 바꾸고 싶음",
+        "원래 프로그램의 내보내기 확인",
+        "이름 변경은 파일 변환이 아님"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "파일 이름이 잘려 있으면 열을 넓혀 확인하세요. 형식이 예상과 다르면 원본을 보내 준 경로에서 다시 확인하고, 파일을 실행해 시험하지 마세요.",
+    "related": [
+      "chrome-download-history-vs-files",
+      "qr-check-before-open"
+    ]
+  },
+  "google-backup-codes-replace-old-set": {
+    "updated": "2026-11-16",
+    "scope": "실제 계정의 백업 코드를 생성·조회하거나 이전 세트를 무효화하지 않았습니다.",
+    "path": "백업 코드 한 개 사용과 새 세트 생성의 효력을 구분하기",
+    "heading": "백업 코드 한 개 사용과 새 세트 생성의 효력을 구분하기",
+    "rows": [
+      [
+        "같은 세트에서 한 개 사용",
+        "쓴 코드에만 사용 표시",
+        "코드는 한 번만 사용"
+      ],
+      [
+        "새 세트 생성",
+        "이전 인쇄본과 구분",
+        "남은 번호를 포함한 이전 세트도 비활성화"
+      ],
+      [
+        "현재 유효한 사본이 없음",
+        "공식 로그인 복구 경로 확인",
+        "코드를 댓글·문의에 보내지 않기"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "코드를 누구에게도 보내지 마세요. 로그인 가능한 상태와 올바른 계정을 확인할 수 없다면 새 코드를 반복 생성하기보다 공식 복구 안내를 따르세요.",
+    "related": [
+      "google-two-step",
+      "different-passwords"
+    ]
+  },
+  "google-photos-free-up-space-device-copy": {
+    "updated": "2026-11-16",
+    "scope": "실제 사진을 삭제하거나 백업 설정을 바꾸지 않았고 제조사 갤러리의 모든 동작을 시험하지 않았습니다.",
+    "path": "기기 공간 확보와 보관함 삭제의 영향을 나누어 판단하기",
+    "heading": "기기 공간 확보와 보관함 삭제의 영향을 나누어 판단하기",
+    "rows": [
+      [
+        "휴대전화 공간만 부족",
+        "기기 사본 정리 대상 확인",
+        "계정 저장 공간 정리와 다름"
+      ],
+      [
+        "휴지통으로 이동하려 함",
+        "다른 백업 기기 영향 확인",
+        "기기 공간 확보와 같은 동작이 아님"
+      ],
+      [
+        "비행기에서 볼 자료가 있음",
+        "오프라인 사본 직접 확인",
+        "클라우드에서 보인다는 것만으로 부족"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "백업 계정이나 상태가 확실하지 않으면 추가 삭제를 멈추세요. 기본 갤러리와 Google 포토가 어느 저장 위치를 보여 주는지 나누어 확인하세요.",
+    "related": [
+      "phone-storage-before-delete",
+      "onedrive-cloud-vs-green-check-offline"
+    ]
+  },
+  "firefox-https-only-secure-site-warning": {
+    "updated": "2026-11-16",
+    "scope": "보안 경고를 우회하거나 보호 기능을 끄는 시험을 하지 않았습니다. Mozilla 자료는 기존 확인일을 유지합니다.",
+    "path": "HTTPS 전용 모드 경고가 나타났을 때 주소와 적용 범위 확인하기",
+    "heading": "HTTPS 전용 모드 경고가 나타났을 때 주소와 적용 범위 확인하기",
+    "rows": [
+      [
+        "오래된 즐겨찾기에서 경고",
+        "공식 홈페이지의 현재 주소 찾기",
+        "경고를 무시하고 로그인하지 않기"
+      ],
+      [
+        "HTTPS로 정상 연결",
+        "운영자와 주소도 따로 확인",
+        "암호화가 내용의 진실을 보증하지 않음"
+      ],
+      [
+        "어느 창에 적용되는지 궁금",
+        "설정 화면의 적용 범위 읽기",
+        "일반 창과 사생활 보호 창 구분"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "경고를 넘기기 위해 보안 기능부터 끄지 마세요. 알고 있던 공식 주소나 앱으로 돌아가 같은 정보를 찾으세요.",
+    "related": [
+      "qr-check-before-open",
+      "firefox-cache-only"
+    ]
+  },
+  "gmail-undo-send-window-settings": {
+    "updated": "2026-11-16",
+    "scope": "실제 메일을 발송하거나 계정의 취소 시간을 변경하지 않았습니다.",
+    "path": "보내기 취소 가능 시간과 이미 도착한 메일의 회수를 구별하기",
+    "heading": "보내기 취소 가능 시간과 이미 도착한 메일의 회수를 구별하기",
+    "rows": [
+      [
+        "보낸 직후 실수 발견",
+        "전송 알림에 실행취소가 남았는지 확인",
+        "정해진 시간 내 작업"
+      ],
+      [
+        "실행취소가 사라짐",
+        "발송 내용과 정정할 부분 확인",
+        "보낸편지함 삭제는 상대 메일 회수가 아님"
+      ],
+      [
+        "평소 시간을 바꾸고 싶음",
+        "모든 설정 보기 → 보내기 취소",
+        "시간 선택 뒤 변경사항 저장 필요"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "취소 버튼이 사라졌다면 회수됐다고 가정하지 마세요. 실제 수신자와 발송 내용을 확인한 뒤 필요한 정정을 한 번에 안내하세요.",
+    "related": [
+      "gmail-archive-find-again",
+      "gmail-block-vs-unsubscribe"
+    ]
+  },
+  "windows-storage-sense-downloads-setting": {
+    "updated": "2026-11-16",
+    "scope": "Windows 자동 정리를 켜거나 실제 파일을 삭제하지 않았습니다.",
+    "path": "저장소 센스에서 휴지통과 다운로드 정리 조건을 따로 확인하기",
+    "heading": "저장소 센스에서 휴지통과 다운로드 정리 조건을 따로 확인하기",
+    "rows": [
+      [
+        "휴지통만 정리하고 싶음",
+        "휴지통의 기간 조건 읽기",
+        "다운로드 폴더 조건과 별개"
+      ],
+      [
+        "다운로드를 보관소로 사용",
+        "다운로드 자동 삭제 설정 확인",
+        "계속 쓸 파일은 별도 보관 위치 검토"
+      ],
+      [
+        "다른 드라이브가 가득 참",
+        "정리 대상 드라이브 확인",
+        "저장소 센스는 시스템 드라이브 기준"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "자동 삭제를 실행하기 전에 필요한 파일의 보관 위치를 확인하세요. 최근 다운로드와 최근 열람이라는 조건을 같은 의미로 읽지 마세요.",
+    "related": [
+      "chrome-download-history-vs-files",
+      "phone-storage-before-delete"
+    ]
+  },
+  "android-play-protect-warning-check": {
+    "updated": "2026-11-16",
+    "scope": "위험한 앱을 설치하거나 보호 기능을 끄지 않았으며 개별 APK의 안전을 판정하지 않습니다.",
+    "path": "앱 검사 경고와 Play 프로텍트 기기 인증 표시를 구별하기",
+    "heading": "앱 검사 경고와 Play 프로텍트 기기 인증 표시를 구별하기",
+    "rows": [
+      [
+        "앱 설치 중 경고",
+        "앱 이름·설치 출처·경고 문구 확인",
+        "검사를 끄라는 요구를 그대로 따르지 않기"
+      ],
+      [
+        "기기가 인증되지 않음 표시",
+        "Play 스토어 설정의 정보 항목 확인",
+        "특정 앱에 대한 경고와 별개"
+      ],
+      [
+        "배송 확인용 설치 파일 수신",
+        "배송사의 공식 주소나 기존 앱 확인",
+        "문자 속 파일을 실행해 확인하지 않기"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "경고를 없애려고 설치 파일을 반복 실행하지 마세요. 원래 쓰던 공식 앱·주소에서 서비스를 확인하고 보호 설정은 유지하세요.",
+    "related": [
+      "android-app-permission-check",
+      "qr-check-before-open"
+    ]
   }
 }

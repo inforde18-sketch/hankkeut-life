@@ -1,0 +1,137 @@
+{
+  "windows-show-file-name-extensions": {
+    "digest": "28b077a7cef48250391ed6e77500879d5b44916b3531ddb28b723d9339064a3c",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "파일 탐색기에서 이름 중간이 아니라 마지막 확장명을 읽기",
+    "distinctValue": "이미 공개된 다운로드 기록 글과 달리 이름 표시와 파일 형식 변환의 차이를 해결합니다.",
+    "practicalCheck": "파일이 안 열릴 때 이름을 고치는 대신 원본 형식과 보낸 사람을 확인하는 선택을 안내합니다.",
+    "limitations": "실행 파일을 만들거나 열지 않았으며 확장명만으로 악성 여부를 판단하지 않습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/common-file-name-extensions-in-windows"
+    ],
+    "comparedWith": [
+      "chrome-download-history-vs-files",
+      "qr-check-before-open"
+    ],
+    "sourceDates": {
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/common-file-name-extensions-in-windows": "2026-11-09"
+    }
+  },
+  "google-backup-codes-replace-old-set": {
+    "digest": "39a529ba08f2630184916a537f464c665df90109ae4f9edba4a8d37247f985f4",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "백업 코드 한 개 사용과 새 세트 생성의 효력을 구분하기",
+    "distinctValue": "일반 2단계 인증 설정 글에서 다루지 않은 이전 인쇄본과 새 세트의 유효성을 비교합니다.",
+    "practicalCheck": "숫자를 쓰지 않고 계정·새 세트 여부·보관 위치만 점검하도록 안내합니다.",
+    "limitations": "실제 계정의 백업 코드를 생성·조회하거나 이전 세트를 무효화하지 않았습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/accounts/answer/1187538?hl=ko"
+    ],
+    "comparedWith": [
+      "google-two-step",
+      "different-passwords"
+    ],
+    "sourceDates": {
+      "https://support.google.com/accounts/answer/1187538?hl=ko": "2026-11-09"
+    }
+  },
+  "google-photos-free-up-space-device-copy": {
+    "digest": "320524299081d03a26b22fdd5984e878ce1480dff8842e4441892127eb784b8b",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "기기 공간 확보와 보관함 삭제의 영향을 나누어 판단하기",
+    "distinctValue": "휴대전화 공간 일반 정리 글보다 Google 포토에서 사라지는 사본의 위치를 구체적으로 비교합니다.",
+    "practicalCheck": "중요한 사진은 같은 계정의 다른 화면에서 백업을 확인한 후 정리하도록 합니다.",
+    "limitations": "실제 사진을 삭제하거나 백업 설정을 바꾸지 않았고 제조사 갤러리의 모든 동작을 시험하지 않았습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/photos/answer/6128843?hl=ko",
+      "https://support.google.com/photos/answer/6128858?hl=ko"
+    ],
+    "comparedWith": [
+      "phone-storage-before-delete",
+      "onedrive-cloud-vs-green-check-offline"
+    ],
+    "sourceDates": {
+      "https://support.google.com/photos/answer/6128843?hl=ko": "2026-11-09",
+      "https://support.google.com/photos/answer/6128858?hl=ko": "2026-11-09"
+    }
+  },
+  "firefox-https-only-secure-site-warning": {
+    "digest": "15cd8ad6d9951d29027120b847af85e6c9349b131df649462cae498323e8b9d1",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "HTTPS 전용 모드 경고가 나타났을 때 주소와 적용 범위 확인하기",
+    "distinctValue": "기존 QR 주소 확인 글과 달리 브라우저가 연결 방식을 올리는 과정에서 생기는 경고를 구분합니다.",
+    "practicalCheck": "오래된 즐겨찾기라면 공식 홈페이지에서 새 주소를 찾는 대안을 제시합니다.",
+    "limitations": "보안 경고를 우회하거나 보호 기능을 끄는 시험을 하지 않았습니다. Mozilla 자료는 기존 확인일을 유지합니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.mozilla.org/en-US/kb/https-only-prefs"
+    ],
+    "comparedWith": [
+      "qr-check-before-open",
+      "firefox-cache-only"
+    ],
+    "sourceDates": {
+      "https://support.mozilla.org/en-US/kb/https-only-prefs": "2026-11-09"
+    }
+  },
+  "gmail-undo-send-window-settings": {
+    "digest": "932bfae52fa92e881e60e8150491370f45889ea74da873ebb2491e1e173dfd03",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "보내기 취소 가능 시간과 이미 도착한 메일의 회수를 구별하기",
+    "distinctValue": "Gmail 보관·검색·차단 글과 다른 발송 직후의 짧은 취소 기회를 다룹니다.",
+    "practicalCheck": "설정의 시간 선택과 발송 전 수신자·첨부 확인을 분리해 안내합니다.",
+    "limitations": "실제 메일을 발송하거나 계정의 취소 시간을 변경하지 않았습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/mail/answer/2819488?hl=ko"
+    ],
+    "comparedWith": [
+      "gmail-archive-find-again",
+      "gmail-block-vs-unsubscribe"
+    ],
+    "sourceDates": {
+      "https://support.google.com/mail/answer/2819488?hl=ko": "2026-11-09"
+    }
+  },
+  "windows-storage-sense-downloads-setting": {
+    "digest": "4c61b1c3ce1753c580b2e075fe6b2200e81d318b30db2cbdbdd0f0135c3598c6",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "저장소 센스에서 휴지통과 다운로드 정리 조건을 따로 확인하기",
+    "distinctValue": "수동 다운로드 파일 정리와 달리 Windows 자동 삭제 주기와 드라이브 범위를 다룹니다.",
+    "practicalCheck": "다운로드를 보관소로 쓰는 상황에서 자동 정리를 적용하기 전 필요한 파일을 분리하도록 합니다.",
+    "limitations": "Windows 자동 정리를 켜거나 실제 파일을 삭제하지 않았습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/manage-drive-space-with-storage-sense"
+    ],
+    "comparedWith": [
+      "chrome-download-history-vs-files",
+      "phone-storage-before-delete"
+    ],
+    "sourceDates": {
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/manage-drive-space-with-storage-sense": "2026-11-09"
+    }
+  },
+  "android-play-protect-warning-check": {
+    "digest": "73f09e9fc8912e77ba2591eee605f8e45dd5388f2f1782a4928780b3f2e1c91f",
+    "reviewedAt": "2026-11-16",
+    "readerTask": "앱 검사 경고와 Play 프로텍트 기기 인증 표시를 구별하기",
+    "distinctValue": "앱 권한 일반 점검과 달리 설치 출처와 경고 종류에 따른 초기 대응을 정리합니다.",
+    "practicalCheck": "앱 이름·설치 경로·경고 문구를 개인정보 없이 정리해 공식 경로와 대조하도록 합니다.",
+    "limitations": "위험한 앱을 설치하거나 보호 기능을 끄지 않았으며 개별 APK의 안전을 판정하지 않습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/googleplay/answer/2812853?hl=ko"
+    ],
+    "comparedWith": [
+      "android-app-permission-check",
+      "qr-check-before-open"
+    ],
+    "sourceDates": {
+      "https://support.google.com/googleplay/answer/2812853?hl=ko": "2026-11-09"
+    }
+  }
+}
