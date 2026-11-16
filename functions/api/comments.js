@@ -106,9 +106,8 @@ export async function onRequest({ request, env }) {
       const excluded=[...moderatedIds];
       const { results } = await db.prepare(
         'SELECT id, nickname, body, created_at FROM comments WHERE article = ? AND hidden = 0'+
-        (excluded.length?' AND id NOT IN ('+excluded.map(()=>'?').join(',')+')':'')+
-        ' ORDER BY created_at DESC, id DESC LIMIT 50',
-      ).bind(article,...excluded).all();
+        ' AND id NOT IN (SELECT value FROM json_each(?)) ORDER BY created_at DESC, id DESC LIMIT 50',
+      ).bind(article,JSON.stringify(excluded)).all();
       return respond({ comments: results });
     }
 
