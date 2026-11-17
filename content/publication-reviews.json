@@ -133,5 +133,24 @@
     "sourceDates": {
       "https://support.google.com/googleplay/answer/2812853?hl=ko": "2026-11-09"
     }
+  },
+  "gmail-scheduled-send-edit-reschedule": {
+    "digest": "c958eac053833a43ef5f37525742a8611b29c4c0b913216ef2c1287284ab190e",
+    "reviewedAt": "2026-11-17",
+    "readerTask": "발송 전 예약 메일을 고친 뒤 임시보관 상태와 재예약 완료를 구분합니다.",
+    "distinctValue": "기존 보내기 취소 시간 설정 글은 발송 직후의 실행취소를 다룹니다. 이 글은 발송 전 예약 취소 후 임시보관과 재예약 단계에 집중합니다.",
+    "practicalCheck": "메일이 있는 목록을 먼저 고르고 수신자·첨부·날짜를 읽은 뒤 예약됨의 시간을 다시 확인하는 점검표를 제공합니다.",
+    "limitations": "컴퓨터용 Google 공식 자료를 직접 읽었으며 실제 메일을 예약·취소·전송하지 않았습니다. 예제는 가상 상황이고 본문 이미지는 자체 설명 도식입니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/mail/answer/9214606?hl=ko&co=GENIE.Platform%3DDesktop"
+    ],
+    "comparedWith": [
+      "gmail-undo-send-window-settings",
+      "gmail-archive-find-again"
+    ],
+    "sourceDates": {
+      "https://support.google.com/mail/answer/9214606?hl=ko&co=GENIE.Platform%3DDesktop": "2026-11-18"
+    }
   }
 }

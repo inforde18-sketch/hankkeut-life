@@ -953,5 +953,34 @@
       "android-app-permission-check",
       "qr-check-before-open"
     ]
+  },
+  "gmail-scheduled-send-edit-reschedule": {
+    "updated": "2026-11-18",
+    "scope": "컴퓨터용 Gmail에서 발송 전 예약 메일을 수정하는 방법입니다. 실제 계정의 예약·취소·발송은 실행하지 않았습니다.",
+    "path": "Gmail → 예약됨 → 해당 메일 → 보내기 취소 → 수정 → 보내기 예약",
+    "heading": "메일이 어느 목록에 있는지부터 확인하기",
+    "rows": [
+      [
+        "예약됨에서 보임",
+        "메일과 예정 날짜·시간 확인",
+        "목록에 있다는 것과 실제 전송 완료는 다름"
+      ],
+      [
+        "수정 후 임시보관함에 있음",
+        "수신자·내용 확인 후 보내기 예약 선택",
+        "창을 닫는 것만으로 새 예약이 저장되지는 않음"
+      ],
+      [
+        "이미 보낸편지함에 있음",
+        "현재 전송된 내용과 필요한 정정 구분",
+        "같은 내용을 곧바로 다시 예약하지 않기"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "예정 시간이 지났더라도 바로 재발송하지 마세요. Google이 안내하는 지연 가능성과 예약 당시 시간대를 확인하고, 어떤 목록에 있는 메일인지부터 구분하세요.",
+    "related": [
+      "gmail-undo-send-window-settings",
+      "gmail-archive-find-again"
+    ]
   }
 }
