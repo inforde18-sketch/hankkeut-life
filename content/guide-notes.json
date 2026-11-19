@@ -1011,5 +1011,34 @@
       "google-drive-restricted-vs-folder-access",
       "onedrive-cloud-vs-green-check-offline"
     ]
+  },
+  "google-docs-pages-pageless-print-layout": {
+    "updated": "2026-11-20",
+    "scope": "컴퓨터용 Google Docs의 공개 도움말을 확인했습니다. 실제 문서 설정·기본값·인쇄·PDF 내보내기는 실행하지 않았으며 도식은 실제 서비스 캡처가 아닙니다.",
+    "path": "파일 → 페이지 설정으로 형식 확인 / 보기 → 인쇄 레이아웃 표시로 윤곽선 확인",
+    "heading": "문서 형식과 화면 표시 중 무엇을 바꿀까요?",
+    "rows": [
+      [
+        "페이지 없음이며 페이지 번호·여백이 필요함",
+        "파일 → 페이지 설정 → 페이지 형식 검토",
+        "목적과 현재 형식을 읽고 전환 여부 결정"
+      ],
+      [
+        "이미 페이지 형식인데 종이 경계가 안 보임",
+        "보기 → 인쇄 레이아웃 표시 확인",
+        "문서 형식과 화면 표시를 구분"
+      ],
+      [
+        "넓은 표를 화면에서 읽으려는 목적",
+        "페이지 없음의 보기 → 텍스트 너비 검토",
+        "본인의 너비 선택은 공동작업자의 표시를 바꾸지 않음"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "원하는 모양이 안 되면 현재 형식과 바꾼 항목을 먼저 적어 두세요. 다른 기능을 계속 바꾸기 전에 문서 화면과 실제 출력에서 무엇이 다른지 나눠 확인하세요.",
+    "related": [
+      "google-docs-version-copy-before-restore",
+      "gmail-find-pdf-with-filename"
+    ]
   }
 }

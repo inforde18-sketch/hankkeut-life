@@ -173,5 +173,26 @@
       "google-drive-restricted-vs-folder-access",
       "onedrive-cloud-vs-green-check-offline"
     ]
+  },
+  "google-docs-pages-pageless-print-layout": {
+    "digest": "a6772f49f6b6aedc578f1e96fff718fd4b5bb0e23e431bdfdbf9944e7bb97321",
+    "reviewedAt": "2026-11-19",
+    "readerTask": "Docs에서 종이 경계나 페이지 기능을 찾지 못할 때 문서 형식과 인쇄 레이아웃 표시를 구별합니다.",
+    "distinctValue": "기존 Docs 버전 기록 글은 이전 내용을 찾는 작업이고 Gmail PDF 글은 첨부메일 검색입니다. 이 글은 현재 문서의 형식·윤곽선·개인 텍스트 너비의 적용 범위를 해결합니다.",
+    "practicalCheck": "형식부터 읽고 필요한 결과를 정한 뒤 표시 설정을 확인하는 분기표, 현재 형식·필요한 결과·바꾼 항목 메모와 두 쪽 안내문 가상 사례 한 개를 제공합니다.",
+    "limitations": "컴퓨터용 Google 공식 문서 두 개의 공개 본문을 읽었습니다. 실제 사용자 문서 설정·기본값·인쇄·PDF 출력이나 공동작업자 화면을 실행·비교하지 않았고 본문 이미지는 자체 설명 도식입니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/docs/answer/11528737?hl=ko&co=GENIE.Platform%3DDesktop",
+      "https://support.google.com/docs/answer/10296604?hl=ko&co=GENIE.Platform%3DDesktop"
+    ],
+    "sourceDates": {
+      "https://support.google.com/docs/answer/11528737?hl=ko&co=GENIE.Platform%3DDesktop": "2026-11-20",
+      "https://support.google.com/docs/answer/10296604?hl=ko&co=GENIE.Platform%3DDesktop": "2026-11-20"
+    },
+    "comparedWith": [
+      "google-docs-version-copy-before-restore",
+      "gmail-find-pdf-with-filename"
+    ]
   }
 }
