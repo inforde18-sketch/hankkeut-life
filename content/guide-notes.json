@@ -1040,5 +1040,34 @@
       "google-docs-version-copy-before-restore",
       "gmail-find-pdf-with-filename"
     ]
+  },
+  "windows-zip-extract-one-vs-all": {
+    "updated": "2026-11-21",
+    "scope": "Windows의 일반 ZIP에서 개별 항목과 전체 내용을 꺼내는 절차입니다. 공식 문서를 읽었으며 실제 탐색기 조작·암호화 ZIP·다른 압축 형식·사용자 파일은 시험하지 않았습니다. 그림은 자체 설명 도식입니다.",
+    "path": "파일 탐색기 → ZIP → 필요한 항목을 바깥 폴더로 끌어내기 / ZIP 우클릭 → 모두 압축 풀기",
+    "heading": "필요한 범위와 결과를 확인할 위치",
+    "rows": [
+      [
+        "파일이나 폴더 한 개만 필요함",
+        "ZIP을 열어 대상을 다른 위치로 끌어내기",
+        "압축 폴더 바깥의 대상 폴더에서 결과 확인"
+      ],
+      [
+        "묶음 전체가 필요함",
+        "모두 압축 풀기 선택 후 안내 따르기",
+        "선택한 저장 위치와 전체 항목 확인"
+      ],
+      [
+        "꺼낸 파일을 첨부해야 함",
+        "꺼낸 폴더에서 필요한 파일 선택",
+        "받은 ZIP을 다시 고르지 않았는지 대조"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "파일을 꺼낼 수 없다고 같은 작업을 여러 위치에 반복하기보다 오류 문구와 저장 위치를 확인하세요. 이 글은 암호를 해제하거나 손상된 압축 파일을 복구하는 안내가 아닙니다.",
+    "related": [
+      "chrome-download-history-vs-files",
+      "windows-show-file-name-extensions"
+    ]
   }
 }

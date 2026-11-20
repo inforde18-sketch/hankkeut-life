@@ -194,5 +194,24 @@
       "google-docs-version-copy-before-restore",
       "gmail-find-pdf-with-filename"
     ]
+  },
+  "windows-zip-extract-one-vs-all": {
+    "digest": "e29b9da7311eea5f6879dfcd4c72aafd55f6e84000239d8f168cd867baa43cf1",
+    "reviewedAt": "2026-11-20",
+    "readerTask": "ZIP 전체를 풀지 않고 필요한 한 항목만 꺼내어 실제 저장 폴더에서 찾습니다.",
+    "distinctValue": "기존 다운로드 기록 글은 목록 삭제와 실제 파일을 구별하고 확장명 글은 파일 종류 확인을 다룹니다. 이번 글은 압축 안의 항목을 선택해 바깥 폴더로 꺼내고 첨부까지 경로를 연결하는 작업입니다.",
+    "practicalCheck": "받은 ZIP·필요한 항목·꺼낼 폴더 세 칸 메모, 개별/전체/첨부 상황별 표와 사진 한 장의 가상 사례 한 개를 제공해 불필요한 전체 추출과 중복 폴더를 줄이도록 합니다.",
+    "limitations": "Microsoft의 공개 ZIP 도움말 본문을 읽었으며 실제 Windows 탐색기 메뉴를 열거나 사용자 파일을 추출하지 않았습니다. 암호화·손상된 파일·다른 압축 형식은 확인하지 않았고 본문 이미지는 자체 도식입니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/zip-and-unzip-files"
+    ],
+    "sourceDates": {
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/zip-and-unzip-files": "2026-11-21"
+    },
+    "comparedWith": [
+      "chrome-download-history-vs-files",
+      "windows-show-file-name-extensions"
+    ]
   }
 }
