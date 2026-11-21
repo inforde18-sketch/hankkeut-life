@@ -213,5 +213,26 @@
       "chrome-download-history-vs-files",
       "windows-show-file-name-extensions"
     ]
+  },
+  "google-photos-location-sharing-vs-downloaded-file": {
+    "digest": "cb69dd8178d70cfd6b7fbd7b5776feda71df51b21680d34103351094ecf6087c",
+    "reviewedAt": "2026-11-21",
+    "readerTask": "포토의 공유 앨범에서 위치를 숨긴 설정과 다운로드해 보낼 실제 사진 파일의 위치 처리를 구별합니다.",
+    "distinctValue": "기존 포토 공간 확보 글은 기기 사본과 보관함 삭제, Drive 글은 접근 권한을 다룹니다. 새 글은 사진 위치의 출처와 포토 내부 공유·파일 전송·카메라 기록 설정의 범위를 해결합니다.",
+    "practicalCheck": "보내는 방식·받는 대상·확인할 파일 세 칸 메모와 공유 경로별 표를 제공하고, 앨범 공유에서 파일 첨부로 바뀐 가상 사례 한 개로 점검 대상이 바뀌는 이유를 설명합니다.",
+    "limitations": "Google 공식 위치·카메라 도움말 공개 본문을 직접 읽었습니다. 실제 사진 위치 편집·계정 공유 설정·다운로드·외부 전송·제조사별 카메라를 시험하지 않았고 메타데이터 제거 도구를 실행하거나 제거 성공을 보장하지 않습니다. 본문 그림은 자체 도식입니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/photos/answer/6153599?hl=ko&co=GENIE.Platform%3DAndroid",
+      "https://support.google.com/photos/answer/9921876"
+    ],
+    "sourceDates": {
+      "https://support.google.com/photos/answer/6153599?hl=ko&co=GENIE.Platform%3DAndroid": "2026-11-22",
+      "https://support.google.com/photos/answer/9921876": "2026-11-22"
+    },
+    "comparedWith": [
+      "google-photos-free-up-space-device-copy",
+      "google-drive-restricted-vs-folder-access"
+    ]
   }
 }

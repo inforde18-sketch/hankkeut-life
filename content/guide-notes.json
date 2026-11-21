@@ -1069,5 +1069,34 @@
       "chrome-download-history-vs-files",
       "windows-show-file-name-extensions"
     ]
+  },
+  "google-photos-location-sharing-vs-downloaded-file": {
+    "updated": "2026-11-22",
+    "scope": "Android Google 포토의 공유 앨범과 다운로드 후 파일 전송의 범위를 비교합니다. 공식 자료를 읽었으며 실제 개인 사진·계정·카메라 설정·다운로드·전송은 실행하지 않았습니다. 그림은 자체 설명 도식입니다.",
+    "path": "공유 방식 확인 → 포토 안의 공유 옵션 또는 실제 보낼 파일 구분 → 적용 범위 확인",
+    "heading": "어떤 위치 설정을 확인해야 할까요?",
+    "rows": [
+      [
+        "포토 공유 앨범으로 보여줌",
+        "해당 앨범의 공유 → 옵션 → 사진 위치 공유",
+        "앨범의 옵션을 모든 외부 앱에 적용됐다고 보지 않기"
+      ],
+      [
+        "사진을 내려받아 메일 등에 첨부함",
+        "실제 보낼 파일과 사용하는 앱의 처리 범위 확인",
+        "포토 안의 위치 변경만으로 파일 위치 제거를 판단하지 않기"
+      ],
+      [
+        "앞으로 촬영할 때 위치 기록을 조정함",
+        "기기 카메라의 위치 저장·위치 태그 관련 설정",
+        "기존 사진 처리와 별도 과제로 구분"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "현재 사진의 위치 출처나 파일 정보 처리를 확인할 수 없다면 제거 완료로 표시하지 마세요. 실제 사진·집 주소·위치 좌표를 댓글이나 공개 문의에 올려 확인받을 필요는 없습니다.",
+    "related": [
+      "google-photos-free-up-space-device-copy",
+      "google-drive-restricted-vs-folder-access"
+    ]
   }
 }
