@@ -234,5 +234,24 @@
       "google-photos-free-up-space-device-copy",
       "google-drive-restricted-vs-folder-access"
     ]
+  },
+  "google-sheets-filter-view-vs-shared-filter": {
+    "digest": "6cb1cb60cd55b11ca2b69d449982bbd1f15b97eac35fe526ddbfcb82e5a0ae58",
+    "reviewedAt": "2026-11-22",
+    "readerTask": "공동 시트의 공용 필터를 바꾸지 않고 개인 확인용 조건을 선택하며 임시 보기의 저장 범위를 이해합니다.",
+    "distinctValue": "기존 Docs 글은 버전 기록 복원이고 Drive 글은 파일 접근 권한입니다. 새 글은 시트의 데이터 표시 조건·필터 보기·임시 저장 상태라는 별도 공동 작업 과제를 해결합니다.",
+    "practicalCheck": "공동 기준과 개인 확인을 먼저 고르는 질문, 목적별 표와 대상 범위·담당·상태 메모를 제시하고 행사 준비표의 가상 사례 한 개로 빈 결과를 재확인하도록 합니다.",
+    "limitations": "Google의 컴퓨터용 정렬·필터 도움말 공개 본문을 직접 읽었습니다. 실제 시트의 보기 생성·저장·정렬·권한 변경이나 공동작업자 화면 비교는 실행하지 않았고 본문 그림은 자체 도식입니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/docs/answer/3540681?hl=ko&co=GENIE.Platform%3DDesktop"
+    ],
+    "sourceDates": {
+      "https://support.google.com/docs/answer/3540681?hl=ko&co=GENIE.Platform%3DDesktop": "2026-11-23"
+    },
+    "comparedWith": [
+      "google-docs-version-copy-before-restore",
+      "google-drive-restricted-vs-folder-access"
+    ]
   }
 }

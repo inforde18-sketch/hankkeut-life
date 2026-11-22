@@ -1098,5 +1098,34 @@
       "google-photos-free-up-space-device-copy",
       "google-drive-restricted-vs-folder-access"
     ]
+  },
+  "google-sheets-filter-view-vs-shared-filter": {
+    "updated": "2026-11-23",
+    "scope": "컴퓨터용 Google Sheets의 일반 필터와 필터 보기를 비교합니다. 공식 자료를 읽었으며 실제 계정의 시트·필터·정렬·동료 화면은 조작하거나 시험하지 않았습니다. 그림은 자체 설명 도식입니다.",
+    "path": "데이터 → 필터 보기 만들기 / 저장된 보기: 데이터 → 뷰 변경",
+    "heading": "공동 기준인가요, 나만 보는 조건인가요?",
+    "rows": [
+      [
+        "팀이 함께 볼 조건을 조정함",
+        "일반 필터의 적용 범위와 공동 작업 목적 확인",
+        "접근 사용자가 필터를 보고 편집자가 바꿀 수 있음"
+      ],
+      [
+        "개인 화면에서 다른 조건을 확인함",
+        "필터 보기 만들기와 저장 여부 확인",
+        "사용 후 닫기와 보기 삭제를 구분"
+      ],
+      [
+        "보기 권한만 있는 시트임",
+        "임시 필터 보기에서 조건 확인",
+        "임시 보기는 저장되지 않으므로 조건 메모"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "결과가 비었다면 새로 정렬하거나 데이터를 지우기 전에 필터 조건과 대상 범위를 확인하세요. 실제 팀 이름·업무 내용·공유 링크를 공개 댓글에 넣어 점검받을 필요는 없습니다.",
+    "related": [
+      "google-docs-version-copy-before-restore",
+      "google-drive-restricted-vs-folder-access"
+    ]
   }
 }
