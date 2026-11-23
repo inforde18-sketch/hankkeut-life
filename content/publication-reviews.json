@@ -253,5 +253,26 @@
       "google-docs-version-copy-before-restore",
       "google-drive-restricted-vs-folder-access"
     ]
+  },
+  "google-drive-shortcut-delete-vs-original": {
+    "reviewedAt": "2026-11-23",
+    "readerTask": "여러 폴더에 보이는 항목 중 원본과 바로가기를 구별하고, 길잡이만 정리하려는 목적에서 삭제 대상을 먼저 확인합니다.",
+    "distinctValue": "기존 Drive 공유 글은 접근 범위, 25일 글은 휴지통 복원입니다. 이 글은 삭제 전에 항목 정체성과 원본 연결을 판단하는 별도 과제이며 복원 절차를 반복하지 않습니다.",
+    "practicalCheck": "선택 항목 종류·원본 열림·남길 위치를 기록하는 메모와 세 가지 상황 비교표, 행사 안내문의 가상 사례 하나로 정리 대상을 구분합니다.",
+    "limitations": "Google Drive 및 Workspace 공식 공개 도움말의 바로가기 개념·원본 권한·삭제 영향·손상 원인을 직접 읽었습니다. 실제 파일 생성·삭제·복원·공유·다른 사용자 접근 비교는 실행하지 않았고 자체 도식만 씁니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/drive/answer/9700156?co=GENIE.Platform%3DDesktop&hl=ko",
+      "https://support.google.com/a/users/answer/13005112?hl=ko"
+    ],
+    "sourceDates": {
+      "https://support.google.com/drive/answer/9700156?co=GENIE.Platform%3DDesktop&hl=ko": "2026-11-24",
+      "https://support.google.com/a/users/answer/13005112?hl=ko": "2026-11-24"
+    },
+    "comparedWith": [
+      "google-drive-restricted-vs-folder-access",
+      "google-drive-trash-restore-before-empty"
+    ],
+    "digest": "d5e73b7ec54b913bf0f18899c4bdf2f521c608f5c27f05e1046dd38926927beb"
   }
 }
