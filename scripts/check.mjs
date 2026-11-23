@@ -22,8 +22,8 @@ assert(!mayRenderAd({config:adReady,path:'/articles/'+example.slug+'/',post:exam
 const liveConfig=JSON.parse(await readFile('site.config.json','utf8'));
 assert(!liveConfig.ads.enabled,'This release must keep ads disabled');
 assert(!mayRenderAd({config:liveConfig,path:'/articles/'+example.slug+'/',post:example,consentResolved:true}));
-const unreviewed=structuredClone(queue[0]);unreviewed.sections[0].paragraphs[0]+=' changed';
-assert.throws(()=>validatePublicationReview(unreviewed,reviews),'Changed article must need a fresh review');
+if(queue.length){const unreviewed=structuredClone(queue[0]);unreviewed.sections[0].paragraphs[0]+=' changed';
+assert.throws(()=>validatePublicationReview(unreviewed,reviews),'Changed article must need a fresh review');}
 const root=resolve('dist');let htmlCount=0;const broken=[];
 async function exists(path){try{await stat(path);return true}catch{return false}}
 async function walk(dir){for(const d of await readdir(dir,{withFileTypes:true})){const file=resolve(dir,d.name);if(d.isDirectory())await walk(file);else if(d.name.endsWith('.html')){htmlCount++;const html=await readFile(file,'utf8');if(file.startsWith(resolve(root,'articles')+sep))assert.equal((html.match(/<figure class=.guide-example.>/g)||[]).length,1,'Expected one body illustration: '+file);assert(html.includes('lang="ko"'),'Missing Korean language');assert(html.includes('<h1>'),'Missing H1');assert(!html.includes('undefined'),'Undefined content');assert(!/api\.openai\.com|googlesyndication\.com/.test(html),'Paid/tracking script unexpectedly present');for(const m of html.matchAll(/(?:href|src)="(\/[^"#?]*)(?:[?#][^"]*)?"/g)){let target=resolve(root,'.'+m[1]);if(m[1].endsWith('/'))target=resolve(target,'index.html');if(!await exists(target))broken.push({file,target})}}}}

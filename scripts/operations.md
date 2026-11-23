@@ -4,7 +4,17 @@
 
 공식 출처와 기존 글을 직접 읽고, 구체적인 독자 과제·다른 글과의 차이·확인 순서·확인하지 못한 범위를 `content/publication-reviews.json`에 기록합니다. `articleDigest`는 본문·출처·체크리스트를 묶은 SHA-256입니다. 내용이 바뀌면 이전 검토로 발행할 수 없습니다. 글자 수나 하루 발행 일정만으로 검토를 통과시키지 않습니다. 자료를 읽은 것과 실제 기기에서 시험한 것을 구별합니다. 실제 시험하지 않은 기능은 official-documents로 표시합니다.
 
-`node scripts/build.mjs`, `node scripts/check.mjs`, `node scripts/publish-due.mjs --dry-run`을 실행합니다. 누락된 검토는 자동 발행을 중단시킵니다. 기존 공개 글이나 SNS 예약은 지우지 않습니다.
+`node scripts/build.mjs`, `node scripts/check.mjs`, `node scripts/test-publication-clock.mjs`, `node scripts/publish-due.mjs --dry-run`을 실행합니다. 누락된 검토는 자동 발행을 중단시킵니다. 기존 공개 글이나 SNS 예약은 지우지 않습니다.
+
+## 매일 오전 08:17 공개 (한국 시간)
+
+검토된 예약 글을 배포할 때 본문·홈·SNS 목록·주제 목록·문의 선택지·RSS·사이트맵을 미리 만듭니다. 미래 본문은 공개 정적 폴더가 아닌 서버 함수 묶음에만 저장합니다. Cloudflare 서버 시각이 `site.config.json`의 `publicationTimeKst`(08:17)에 도달하면 새 요청부터 해당 글과 목록을 함께 응답합니다. 글의 기존 `publishAt`이 더 늦으면 그 시각을 지킵니다. 자바스크립트를 끈 방문자·검색 로봇도 같은 서버 응답을 받으며 클라이언트 시계나 URL 매개변수로 공개를 앞당길 수 없습니다. HTML·피드·상태 응답은 no-store로 캐시의 이전 목록이 남는 것을 막습니다.
+
+GitHub Actions의 08:17 및 보조 13:43 실행은 공개를 시작하는 작업이 아니라 원격 발행 기록을 정리하는 작업입니다. 실행이 늦어져도 이미 준비한 글의 공개 시각은 바뀌지 않습니다. 기록 동기화는 날짜별 한 편 제한과 검토 digest를 확인하고, 지연된 날짜의 기록도 원래 날짜·서버 공개 시각을 보존해 정리합니다. `archivedAt`은 실제 기록 정리 시각입니다. 반복 실행은 중복 발행하지 않습니다.
+
+실제 공개 현황은 `https://hankkeut-life.pages.dev/api/publication-status`의 서버 기준 publicArticleCount/latest/nextRelease/preparedThrough를 확인하고 기사 URL·홈·SNS 목록도 대조합니다. 원격 articles.json은 기록 정리 전까지 한 발 늦을 수 있으므로 실제 공개 수와 동일하다고 단정하지 않습니다. 다음 7일의 검토된 대기열을 계속 보충·배포해야 합니다. 새 예약 본문은 배포가 완료되기 전까지 준비된 것으로 보지 않습니다.
+
+기존 Pages Functions 무료 한도를 사용하며 새 유료 서비스·토큰·계정은 없습니다. 정적 이미지·CSS는 함수 호출에서 제외합니다. 무료 한도 소진·호스팅 장애까지 정시 공개를 보장하는 것은 아니며, 이때 상태 조회 실패를 정상으로 기록하지 않습니다.
 
 ## 댓글 신고 확인 → 숨김 → 복원
 

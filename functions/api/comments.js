@@ -1,7 +1,7 @@
-import articles from '../../content/articles.json';
-import moderation from '../../content/comment-moderation.json';
+import publication from '../../runtime/publication-meta.generated.mjs';
+import moderation from '../../content/comment-moderation.json' with {type:'json'};
 
-const published = new Map(articles.filter((post) => post.status === 'published').map((post) => [post.slug, post.date]));
+const published = new Map(publication.articles.map(post => [post.slug, post.at]));
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const moderatedIds = new Set((moderation.hidden || []).filter(id => typeof id === 'string' && uuidPattern.test(id)).map(id => id.toLowerCase()));
@@ -86,9 +86,9 @@ async function submitReport(db, article, data) {
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
   const article = url.searchParams.get('article') || '';
-  const date = published.get(article);
+  const visibleAt = published.get(article);
   const siteInquiry = article === 'site' && request.method === 'POST' && url.searchParams.get('report') === '1';
-  if (!siteInquiry && (!slugPattern.test(article) || !date || Date.parse(date + 'T00:00:00+09:00') > Date.now())) {
+  if (!siteInquiry && (!slugPattern.test(article) || !Number.isFinite(visibleAt) || visibleAt > Date.now())) {
     return respond({ message: '공개된 글의 댓글만 이용할 수 있습니다.' }, 404);
   }
   if (!['GET', 'POST'].includes(request.method)) {

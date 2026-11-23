@@ -6,3 +6,8 @@ node_modules/
 social-state.json
 *.log
 work/
+
+dist/
+.publication-stage/
+runtime/*.generated.mjs
+.wrangler/

@@ -1,8 +1,9 @@
-name: Free scheduled publishing
+name: Free publication record sync
 on:
   workflow_dispatch:
   schedule:
     - cron: '17 23 * * *'
+    - cron: '43 4 * * *'
 permissions:
   contents: write
 concurrency:
@@ -20,14 +21,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Publish reviewed posts due today (KST)
+      - name: Reconcile reviewed releases already visible by server time (KST)
         run: node scripts/publish-due.mjs
       - name: Validate and build
         run: |
           node scripts/build.mjs
           node scripts/check.mjs
+          node scripts/test-publication-clock.mjs
       - name: Record publisher health
-        run: node -e "require('fs').writeFileSync('content/publisher-health.json', JSON.stringify({checkedAt:new Date().toISOString(),status:'ok',paidApiCalls:0},null,2)+'\n')"
+        run: node -e "require('fs').writeFileSync('content/publisher-health.json', JSON.stringify({checkedAt:new Date().toISOString(),status:'ok',mode:'archive-time-gated-releases',publicationTimeKst:'08:17',paidApiCalls:0},null,2)+'\n')"
       - name: Save published content
         run: |
           if [ -n "$(git status --porcelain -- content/articles.json content/queue.json content/publisher-health.json)" ]; then
