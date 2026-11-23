@@ -1,0 +1,28 @@
+name: Validate timed publication
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate prebuilt publication and time boundaries
+        run: |
+          node --version
+          node scripts/build.mjs
+          node scripts/check.mjs
+          node scripts/test-publication-clock.mjs
+          node scripts/publish-due.mjs --dry-run
+      - name: Compile Pages Functions without authentication or deployment
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: npx --yes wrangler@4.166.0 pages functions build functions --build-output-directory dist --outdir work/worker-build --compatibility-date 2026-11-01 --minify

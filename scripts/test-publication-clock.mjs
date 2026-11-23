@@ -3,16 +3,21 @@ import {readFile, stat, mkdtemp, mkdir, cp, writeFile, rm} from 'node:fs/promise
 import {resolve, dirname, sep} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {gzipSync} from 'node:zlib';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath, pathToFileURL} from 'node:url';
 import meta from '../runtime/publication-meta.generated.mjs';
 import pages from '../runtime/publication-pages.generated.mjs';
 import {servePublication, publicationStatus} from '../lib/publication-runtime.mjs';
 import {publicationPlan} from './publication-plan.mjs';
 import {releaseTime} from '../lib/publication-clock.mjs';
 import {articleDigest} from './publication-review.mjs';
-import {onRequest as comments} from '../functions/api/comments.js';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 process.chdir(root);
+// Pages bundles JSON imports; Node requires an import attribute for the same JSON.
+// Adapt only the test loader, leaving the deployed handler's known Pages syntax intact.
+let commentSource = await readFile('functions/api/comments.js', 'utf8');
+commentSource = commentSource.replace("'../../runtime/publication-meta.generated.mjs'", JSON.stringify(pathToFileURL(resolve('runtime/publication-meta.generated.mjs')).href));
+commentSource = commentSource.replace("'../../content/comment-moderation.json';", JSON.stringify(pathToFileURL(resolve('content/comment-moderation.json')).href) + " with {type:'json'};");
+const {onRequest: comments} = await import('data:text/javascript;base64,' + Buffer.from(commentSource).toString('base64'));
 const read = async name => JSON.parse(await readFile(name, 'utf8'));
 const [config, posts, queue, reviews] = await Promise.all([
   'site.config.json', 'content/articles.json', 'content/queue.json', 'content/publication-reviews.json',

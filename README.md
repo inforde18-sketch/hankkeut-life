@@ -5,7 +5,8 @@
 ## 무료 운영 구조
 
 - Cloudflare Pages Free의 무료 `pages.dev` 주소와 정적 호스팅
-- GitHub 공개 저장소의 표준 Ubuntu 실행 환경으로 예약 발행
+- Cloudflare 서버 시각으로 검토된 글을 매일 08:17(한국 시간)에 공개
+- GitHub 공개 저장소의 표준 Ubuntu 실행 환경은 발행 기록 동기화와 검사 담당
 - 유료 AI API 호출 없음, 도메인 구매 없음
 - 광고와 실제 SNS 게시 연결은 별도 계정 준비 후 진행
 
@@ -16,7 +17,7 @@ Node.js 22 이상이 필요합니다. 패키지 설치는 필요하지 않습니
 ```sh
 node scripts/build.mjs
 node scripts/check.mjs
-node scripts/test-publishing.mjs
+node scripts/test-publication-clock.mjs
 node scripts/serve.mjs
 ```
 
@@ -34,7 +35,9 @@ node scripts/serve.mjs
 }
 ```
 
-실제 검토 후에만 해당 검토 값을 켭니다. 한국 시간 오전 8시 17분에 기한이 된 글을 하루 최대 1개 발행합니다. 실행 지연과 비활성 저장소의 스케줄 중단이 있을 수 있습니다. 공개 저장소에서만 자동화가 실행됩니다. 유료 AI로 새 글을 자동 생성하지 않습니다.
+실제 출처·권리·본문 검토와 `content/publication-reviews.json`의 내용 결합 검토 기록이 있는 글만 준비합니다. 날짜별 한 편을 미리 검사·렌더링해 서버 함수에 배포하고, 한국 시간 08:17부터 새 요청에 본문·홈·목록·RSS·사이트맵·댓글을 함께 제공합니다. 미래 본문은 공개 정적 폴더에 두지 않습니다. `publishAt`이 더 늦으면 그 시각을 따릅니다.
+
+GitHub 작업이 지연돼도 준비된 글의 공개는 서버 시각으로 처리됩니다. 08:17 및 보조 13:43 작업은 공개된 날짜의 기록을 원래 날짜로 정리하고 `archivedAt`에 실제 동기화 시각을 남깁니다. 반복 실행은 중복되지 않습니다. 실제 공개 상태는 `/api/publication-status`와 기사 URL을 확인하세요. 예약을 계속 보충·배포해야 하며 무료 한도 소진이나 호스팅 장애까지 정시 공개를 보장하지는 않습니다. 유료 AI로 새 글을 자동 생성하지 않습니다.
 
 검사에 통과하면 `content/publisher-health.json`에 마지막 점검 시간을 남깁니다. 현재 예약 대기 파일이 비어 있으면 신규 글은 발행하지 않습니다.
 

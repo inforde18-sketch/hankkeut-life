@@ -1,5 +1,5 @@
 import publication from '../../runtime/publication-meta.generated.mjs';
-import moderation from '../../content/comment-moderation.json' with {type:'json'};
+import moderation from '../../content/comment-moderation.json';
 
 const published = new Map(publication.articles.map(post => [post.slug, post.at]));
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
