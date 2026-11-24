@@ -274,5 +274,26 @@
       "google-drive-trash-restore-before-empty"
     ],
     "digest": "d5e73b7ec54b913bf0f18899c4bdf2f521c608f5c27f05e1046dd38926927beb"
+  },
+  "google-recovery-phone-change-seven-days": {
+    "reviewedAt": "2026-11-24",
+    "readerTask": "본인이 복구 전화번호를 변경한 직후 이전 정보가 보일 때 대상 계정·항목·날짜를 대조하고 모르는 변경과 구분합니다.",
+    "distinctValue": "기존 2단계 인증 글은 기능 설정이고 백업 코드 글은 코드 세트 교체입니다. 새 글은 복구 정보 변경의 적용 기간과 이전 정보 표시라는 별도 로그인 준비 문제를 다룹니다.",
+    "practicalCheck": "본인 변경 여부를 먼저 고르는 분기, 계정/항목/날짜/화면 안내 네 칸 메모와 상황별 표를 제시하고 번호 변경 다음 날의 가상 사례 하나에 적용합니다.",
+    "limitations": "검색 도구의 본문 열기는 429 또는 접근 오류였으므로 출처 확인으로 처리하지 않았습니다. 이후 Node의 공개 HTTP GET으로 두 공식 문서 모두 200과 실제 한국어 본문을 확인했습니다. 계정 접근·전화번호 변경·코드 수신·실제 대기 기간·로그인 결과는 시험하지 않았습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/accounts/answer/183723?co=GENIE.Platform%3DDesktop&hl=ko",
+      "https://support.google.com/accounts/answer/7684753?co=GENIE.Platform%3DDesktop&hl=ko"
+    ],
+    "sourceDates": {
+      "https://support.google.com/accounts/answer/183723?co=GENIE.Platform%3DDesktop&hl=ko": "2026-11-25",
+      "https://support.google.com/accounts/answer/7684753?co=GENIE.Platform%3DDesktop&hl=ko": "2026-11-25"
+    },
+    "comparedWith": [
+      "google-two-step",
+      "google-backup-codes-replace-old-set"
+    ],
+    "digest": "feeecadf323faf6bc81d4cbd5ca5d7791cbfdcc30582ab138f91fe08d965d238"
   }
 }

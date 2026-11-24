@@ -1156,5 +1156,34 @@
       "google-drive-restricted-vs-folder-access",
       "google-drive-trash-restore-before-empty"
     ]
+  },
+  "google-recovery-phone-change-seven-days": {
+    "updated": "2026-11-25",
+    "scope": "개인 Google 계정에서 복구 전화번호를 변경한 직후의 적용 기간과 확인 순서를 다룹니다. 공식 공개 문서만 읽었으며 계정 설정 변경·인증 코드 수신·기간 경과·로그인은 시험하지 않았습니다. 그림은 자체 설명 도식입니다.",
+    "path": "Google 계정 → 보안 및 로그인 → Google에 로그인하는 방법 → 복구 전화번호",
+    "heading": "변경한 적이 있나요, 모르는 안내인가요?",
+    "rows": [
+      [
+        "본인이 최근에 복구 번호를 바꿈",
+        "대상 계정·항목·날짜와 적용 기간 대조",
+        "최대 7일 안내가 로그인 성공 보장은 아님"
+      ],
+      [
+        "본인이 바꾼 적이 없거나 모르는 활동이 보임",
+        "Google 계정 보안 상태와 공식 복구 안내 확인",
+        "최근 변경에 따른 대기라고 단정하지 않기"
+      ],
+      [
+        "등록 정보는 있지만 지금 사용할 수 없음",
+        "로그인 가능한 동안 실제 접근 가능한 수단 점검",
+        "계정이 잠긴 뒤 새 복구 정보를 추가할 수는 없음"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "기간이 지났어도 문제가 이어지면 Google의 계정 복구 안내를 확인하세요. 회사·학교 계정은 관리자에게 문의합니다. 전화번호·이메일·인증번호를 사이트 댓글에 공개하지 마세요.",
+    "related": [
+      "google-two-step",
+      "google-backup-codes-replace-old-set"
+    ]
   }
 }
