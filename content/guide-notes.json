@@ -1185,5 +1185,34 @@
       "google-two-step",
       "google-backup-codes-replace-old-set"
     ]
+  },
+  "windows-dynamic-lock-bluetooth-vs-win-l": {
+    "updated": "2026-11-26",
+    "scope": "Windows 11의 동적 잠금 조건과 수동 잠금의 확인 순서를 다룹니다. 공식 문서를 읽었으며 실제 설정 변경·Bluetooth 페어링·범위 이탈·잠금 시간 측정은 수행하지 않았습니다. 그림은 자체 설명 도식입니다.",
+    "path": "설정 → 계정 → 로그인 옵션 → 추가 설정 → 동적 잠금",
+    "heading": "설정을 켠 것과 지금 잠긴 것을 구분하세요",
+    "rows": [
+      [
+        "지금 자리를 비우려 함",
+        "Windows 키 + L을 누르고 잠금 화면 확인",
+        "자동 잠금의 판단을 기다리는 점검과 구분"
+      ],
+      [
+        "동적 잠금 설정을 점검함",
+        "설정 상태와 페어링된 휴대폰을 각각 읽기",
+        "장치 구성에 따라 사용 가능 여부가 다를 수 있음"
+      ],
+      [
+        "휴대폰을 책상에 두고 이동하려 함",
+        "실제로 가지고 이동하는 기기인지 확인",
+        "Bluetooth 신호 기반을 내 위치의 직접 감지로 오해하지 않기"
+      ]
+    ],
+    "includeExample": false,
+    "stuck": "설정과 장치 구성이 맞는지 확인해도 문제가 이어지면 Microsoft 공식 지원을 참고하세요. 조직의 PC는 관리자에게 문의하고 레지스트리·관리 정책을 임의로 바꾸지 않습니다.",
+    "related": [
+      "different-passwords",
+      "windows-clipboard-pinned-items"
+    ]
   }
 }

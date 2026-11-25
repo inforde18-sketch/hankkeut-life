@@ -295,5 +295,26 @@
       "google-backup-codes-replace-old-set"
     ],
     "digest": "feeecadf323faf6bc81d4cbd5ca5d7791cbfdcc30582ab138f91fe08d965d238"
+  },
+  "windows-dynamic-lock-bluetooth-vs-win-l": {
+    "reviewedAt": "2026-11-25",
+    "readerTask": "자리를 비울 때 Windows 동적 잠금의 Bluetooth 조건과 즉시 수동 잠금을 구분하고 실제 잠금 확인을 우선하는 순서를 정합니다.",
+    "distinctValue": "기존 비밀번호 글은 계정별 자격 증명, 클립보드 글은 저장된 복사 기록입니다. 새 글은 사용 중인 Windows PC를 두고 이동할 때의 물리적 접근과 잠금 완료 확인이라는 별도 과제를 다룹니다.",
+    "practicalCheck": "동적 잠금 상태/페어링 휴대폰/휴대 여부 세 칸 점검, 즉시 떠나기와 설정 점검을 나눈 표, 회의실 이동의 가상 사례 한 개를 제공합니다. 무인 잠금 시험을 유도하지 않습니다.",
+    "limitations": "Microsoft 공식 한국어 로그인 옵션 및 장치 보안 공개 본문을 직접 읽어 Bluetooth 조건, 범위 이탈 뒤 1분 이내 안내, 설정 경로와 Windows+L 수동 잠금을 확인했습니다. 설정 변경·실제 페어링·범위 이탈·잠금·해제·모바일 화면 측정은 수행하지 않았고 자체 도식을 사용합니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.microsoft.com/ko-kr/accounts-billing/security/sign-in-options-in-windows",
+      "https://support.microsoft.com/ko-kr/windows/security/securing-your-device"
+    ],
+    "sourceDates": {
+      "https://support.microsoft.com/ko-kr/accounts-billing/security/sign-in-options-in-windows": "2026-11-26",
+      "https://support.microsoft.com/ko-kr/windows/security/securing-your-device": "2026-11-26"
+    },
+    "comparedWith": [
+      "different-passwords",
+      "windows-clipboard-pinned-items"
+    ],
+    "digest": "b4295a79172435743ebd65b82e37a46bcf14491b643fe97ae2f606cf727bc0d0"
   }
 }
