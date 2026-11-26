@@ -316,5 +316,26 @@
       "windows-clipboard-pinned-items"
     ],
     "digest": "b4295a79172435743ebd65b82e37a46bcf14491b643fe97ae2f606cf727bc0d0"
+  },
+  "google-calendar-invitation-auto-add-settings": {
+    "reviewedAt": "2026-11-26",
+    "readerTask": "캘린더의 낯선 일정과 초대 이메일을 구분하고, 새 초대 추가 옵션 및 기존 일정 처리의 범위를 이해합니다.",
+    "distinctValue": "기존 Gmail 글은 메일의 차단/구독 정리이고 연결 앱 글은 계정 연결 범위입니다. 새 글은 캘린더 초대가 표시되는 조건·이메일 응답·기존 일정의 별도 처리라는 새로운 과제입니다.",
+    "practicalCheck": "현재 옵션/발신자 확인/이메일 수신/캘린더 표시 네 칸 메모, 새 설정과 기존 일정의 비교표, 처음 연락한 거래처 초대의 가상 사례 한 개를 제공합니다.",
+    "limitations": "초대 관리 원문 열기의 429 응답은 확인 성공으로 처리하지 않았습니다. 이후 공개 HTTP GET 200의 실제 한국어 본문에서 세 옵션·새 초대 적용·이메일 수신·그룹 예외를 확인했고 공식 신고 도움말 본문에서 대상과 반복 일정 삭제 영향을 읽었습니다. 실제 계정·메일·초대·연락처·신고·설정 변경이나 모바일 검증은 수행하지 않았습니다.",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/calendar/answer/13159188?hl=ko&co=GENIE.Platform%3DDesktop",
+      "https://support.google.com/calendar/answer/13155911?hl=ko&co=GENIE.Platform%3DDesktop"
+    ],
+    "sourceDates": {
+      "https://support.google.com/calendar/answer/13159188?hl=ko&co=GENIE.Platform%3DDesktop": "2026-11-27",
+      "https://support.google.com/calendar/answer/13155911?hl=ko&co=GENIE.Platform%3DDesktop": "2026-11-27"
+    },
+    "comparedWith": [
+      "gmail-block-vs-unsubscribe",
+      "google-connected-apps-review"
+    ],
+    "digest": "89fee944b4bd7aec11cb8861e3dfd3a88994b1161ec7bd8fd76dbc56887b33f2"
   }
 }
