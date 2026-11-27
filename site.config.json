@@ -7,6 +7,7 @@
   "contactUrl": "https://github.com/inforde18-sketch/hankkeut-life/issues",
   "operatorName": "한끗생활",
   "dailyPublishLimit": 1,
+  "publicationPaused": true,
   "paidAIEnabled": false,
   "monthlyAIBudgetKRW": 0,
   "ads": {

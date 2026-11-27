@@ -22,5 +22,6 @@ export function publicationPlan(config, posts, queue, reviews) {
     occupied.add(post.date);
     plan.push({post, at});
   }
+  if (config.publicationPaused === true) return [];
   return plan.sort((a, b) => a.at - b.at);
 }

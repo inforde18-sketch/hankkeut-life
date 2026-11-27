@@ -23,6 +23,8 @@ const [config, posts, queue, reviews] = await Promise.all([
   'site.config.json', 'content/articles.json', 'content/queue.json', 'content/publication-reviews.json',
 ].map(read));
 const plan = publicationPlan(config, posts, queue, reviews);
+const activeConfig = {...config, publicationPaused:false};
+assert.deepEqual(publicationPlan({...config, publicationPaused:true}, posts, queue, reviews), [], 'Paused publication must not prepare timed releases');
 const request = (path, now, method = 'GET', headers = {}) => servePublication({
   request: new Request('https://hankkeut-life.pages.dev' + path, {method, headers}),
   next: async () => new Response('static passthrough'),
@@ -83,13 +85,13 @@ const guardPost = {...structuredClone(queue[0] || posts[0]), slug: 'review-guard
   date: '2099-01-01', publishAt: '2099-01-01T08:00:00+09:00', reviewed: true, sourcesChecked: true, rightsChecked: true};
 const guardReview = {...Object.values(reviews)[0], digest: articleDigest(guardPost), sourceUrls: guardPost.sources.map(s => s.url)};
 const guardReviews = {[guardPost.slug]: guardReview};
-assert.equal(publicationPlan(config, [], [guardPost], guardReviews).length, 1);
+assert.equal(publicationPlan(activeConfig, [], [guardPost], guardReviews).length, 1);
 assert.equal(new Date(releaseTime({...guardPost, publishAt: '2099-01-01T09:30:00+09:00'}, config)).toISOString(), '2099-01-01T00:30:00.000Z');
 assert.throws(() => releaseTime({...guardPost, publishAt: '2099-01-02T08:00:00+09:00'}, config), /불일치/);
-assert.throws(() => publicationPlan(config, [], [{...guardPost, summary: guardPost.summary + ' changed'}], guardReviews), /검토/);
-assert.equal(publicationPlan(config, [], [{...guardPost, reviewed: false}], guardReviews).length, 0);
+assert.throws(() => publicationPlan(activeConfig, [], [{...guardPost, summary: guardPost.summary + ' changed'}], guardReviews), /검토/);
+assert.equal(publicationPlan(activeConfig, [], [{...guardPost, reviewed: false}], guardReviews).length, 0);
 const second = {...guardPost, slug: 'second-guard-fixture'};
-assert.throws(() => publicationPlan(config, [], [guardPost, second], {...guardReviews, [second.slug]: {...guardReview, digest: articleDigest(second)}}), /중복/);
+assert.throws(() => publicationPlan(activeConfig, [], [guardPost, second], {...guardReviews, [second.slug]: {...guardReview, digest: articleDigest(second)}}), /중복/);
 assert.deepEqual(publicationPlan(config, posts, [], reviews), []);
 for (const {post} of plan) await assert.rejects(stat(resolve('dist/articles', post.slug, 'index.html')), 'Future HTML must stay outside public assets');
 assert(gzipSync(await readFile('runtime/publication-pages.generated.mjs')).length < 2 * 1024 * 1024);
@@ -101,7 +103,7 @@ try {
   await mkdir(resolve(fixture, 'content')); await mkdir(resolve(fixture, 'scripts')); await mkdir(resolve(fixture, 'lib'));
   for (const file of ['publish-due.mjs', 'publication-plan.mjs', 'publication-review.mjs', 'validate.mjs']) await cp('scripts/' + file, resolve(fixture, 'scripts', file));
   await cp('lib/publication-clock.mjs', resolve(fixture, 'lib/publication-clock.mjs'));
-  await writeFile(resolve(fixture, 'site.config.json'), JSON.stringify(config));
+  await writeFile(resolve(fixture, 'site.config.json'), JSON.stringify(activeConfig));
   const sample = structuredClone(guardPost);
   const dates = ['2026-01-02', '2026-01-03'];
   const older = dates.map((date, i) => ({...sample, slug: 'delayed-' + i, date, publishAt: date + 'T08:00:00+09:00'}));
