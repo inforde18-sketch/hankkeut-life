@@ -31,5 +31,16 @@
     ],
     "result": "32개 조합의 검색식 생성 결과가 기대한 문자열과 일치했습니다. 잘못된 발신자 주소는 검색식에서 제외되고 안내가 표시됐습니다.",
     "notTested": "실제 Gmail 계정의 검색 결과나 첨부파일 안전성을 검사한 기록이 아닙니다."
+  },
+  "windows-zip-extract-one-vs-all": {
+    "date": "2026-11-27",
+    "environment": "Windows 빌드 26300 · Windows 압축 폴더 기능 · 직접 만든 ZIP",
+    "steps": [
+      "텍스트 파일 3개를 sample.zip으로 만들었습니다.",
+      "동일한 ZIP에서 agenda.txt 하나를 one 폴더에 복사하고, 전체 3개를 별도의 all 폴더에 복사했습니다.",
+      "두 결과 폴더의 파일 목록과 agenda.txt의 SHA‑256을 원본과 비교했습니다."
+    ],
+    "result": "one: agenda.txt 1개. all: agenda.txt, checklist.txt, notes.txt 3개. 두 결과의 agenda.txt는 원본과 SHA‑256이 같았습니다.",
+    "notTested": "탐색기에서 끌기나 ‘모두 압축 풀기’ 메뉴를 직접 눌러 확인한 것은 아닙니다. 암호화 ZIP과 다른 압축 형식도 시험하지 않았습니다."
   }
 }

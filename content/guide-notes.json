@@ -27,8 +27,8 @@
     ],
     "stuck": "백업된 사진을 다른 화면에서 확인할 수 없거나 삭제 범위가 불분명하다면 사진 정리는 멈추세요. 공식 도움말에서 사용하는 사진 서비스의 기기 사본 정리 방법을 먼저 확인합니다.",
     "related": [
-      "chrome-download-history-vs-files",
-      "firefox-cache-only"
+      "google-photos-free-up-space-device-copy",
+      "chrome-download-history-vs-files"
     ]
   },
   "qr-check-before-open": {
@@ -508,7 +508,7 @@
     "stuck": "버전 기록 메뉴가 없으면 보기 전용인지와 Google Docs 형식인지 확인하세요. 수정 권한이 없다면 소유자에게 필요한 시점의 내용을 요청합니다. 현재 문서와 비교 없이 복원 버튼부터 반복하지 마세요.",
     "related": [
       "google-drive-restricted-vs-folder-access",
-      "gmail-find-pdf-with-filename"
+      "google-drive-trash-restore-before-empty"
     ],
     "updated": "2026-11-16",
     "includeExample": false
@@ -892,8 +892,8 @@
     "includeExample": false,
     "stuck": "취소 버튼이 사라졌다면 회수됐다고 가정하지 마세요. 실제 수신자와 발송 내용을 확인한 뒤 필요한 정정을 한 번에 안내하세요.",
     "related": [
-      "gmail-archive-find-again",
-      "gmail-block-vs-unsubscribe"
+      "gmail-scheduled-send-edit-reschedule",
+      "gmail-archive-find-again"
     ]
   },
   "windows-storage-sense-downloads-setting": {
@@ -1042,8 +1042,8 @@
     ]
   },
   "windows-zip-extract-one-vs-all": {
-    "updated": "2026-11-21",
-    "scope": "Windows의 일반 ZIP에서 개별 항목과 전체 내용을 꺼내는 절차입니다. 공식 문서를 읽었으며 실제 탐색기 조작·암호화 ZIP·다른 압축 형식·사용자 파일은 시험하지 않았습니다. 그림은 자체 설명 도식입니다.",
+    "updated": "2026-11-27",
+    "scope": "Windows 빌드 26300의 압축 폴더 기능으로 직접 만든 일반 ZIP 한 개를 비교했습니다. 파일 탐색기 메뉴 조작, 암호화 ZIP, 다른 압축 형식은 시험하지 않았습니다.",
     "path": "파일 탐색기 → ZIP → 필요한 항목을 바깥 폴더로 끌어내기 / ZIP 우클릭 → 모두 압축 풀기",
     "heading": "필요한 범위와 결과를 확인할 위치",
     "rows": [
