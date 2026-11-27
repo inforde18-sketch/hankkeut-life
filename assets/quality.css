@@ -4,3 +4,5 @@
 .verified-result{margin:30px 0;padding:22px;border-left:4px solid #628c63;background:#f0f4e9;overflow-wrap:anywhere}.verified-result h2{margin-top:10px}.verified-result li{margin:8px 0}.verified-result .guide-caption{line-height:1.8}@media(max-width:600px){.verified-result{padding:16px}.verified-result ol{padding-left:22px}}
 
 .guide-boundary{margin:22px 0;padding:18px 20px;border:1px solid #c6d4c7;border-radius:12px;overflow-wrap:anywhere}.guide-boundary h2{font-size:1.1rem;margin:0 0 10px}.guide-boundary p{margin:8px 0;line-height:1.8}.guide-boundary a{display:inline-block;line-height:1.8}.guide-tool [hidden]{display:none!important}.guide-tool select{white-space:normal}.guide-tool [data-scope-result]{line-height:1.9;margin:0}@media(max-width:600px){.guide-boundary{padding:16px;font-size:16px}.guide-tool [data-scope-link]{min-height:44px;padding-top:8px;overflow-wrap:anywhere}}
+
+.guide-tool p{line-height:1.85}@media(max-width:600px){.article-body p{font-size:16px;line-height:1.95}.comparison{min-width:560px}.comparison th,.comparison td{font-size:16px;line-height:1.8}}
