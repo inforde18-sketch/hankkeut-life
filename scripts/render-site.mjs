@@ -43,7 +43,7 @@ const guideImage=(post,cls='')=>{
 };
 const deviceRules=[
   [/^(?:android-|google-photos-)/,'Android'],
-  [/^phone-storage-/,'Android · iPhone'],
+  [/^phone-storage-/,'갤럭시 · Android'],
   [/^(?:windows-|onedrive-)/,'Windows PC'],
   [/^(?:chrome-|firefox-|edge-|gmail-|google-docs-|google-drive-)/,'PC 웹'],
 ];

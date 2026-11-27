@@ -1,5 +1,5 @@
 const examples = {
-  'phone-storage-before-delete': [0, '휴대전화 저장 공간', '설정에서 많이 차지하는 항목 확인', '사진을 지우기 전 백업 상태 확인'],
+  'phone-storage-before-delete': [0, '갤럭시 저장공간 확인', '설정 → 디바이스 케어 → 저장공간', '큰 사용 항목부터 읽기', '앱 데이터 삭제 전 범위 확인'],
   'different-passwords': [0, '계정마다 다른 비밀번호', '이메일부터 고유한 비밀번호 사용', '바꾼 뒤 복구 정보 확인'],
   'google-two-step': [1, 'Google 2단계 인증', 'Google 계정 → 보안 및 로그인', '2단계 인증과 복구 수단 확인'],
   'firefox-cache-only': [1, 'Firefox에서 지울 항목', '캐시: 웹페이지 임시 파일', '로그인 유지가 필요하면 쿠키 선택 확인'],
@@ -19,7 +19,7 @@ const examples = {
   'onedrive-cloud-vs-green-check-offline': [1, 'OneDrive 파일 아이콘', '파란 구름: 온라인 전용', '흰 원의 녹색 체크: 기기에서 사용 가능', '녹색 원의 흰 체크: 이 기기에 항상 보관'],
   'windows-show-file-name-extensions': [1, 'Windows 파일 확장명', '예시: 보고서.pdf.exe', '맨 끝 확장명은 .exe'],
   'google-backup-codes-replace-old-set': [1, 'Google 백업 코드', '코드 하나 사용: 그 코드만 사용 완료', '새 세트 발급: 이전 세트 사용 불가'],
-  'google-photos-free-up-space-device-copy': [1, 'Google 포토 공간 정리', '기기 공간 확보: 백업된 기기 사본 정리', '휴지통 이동: 포토 보관함 항목 정리'],
+  'google-photos-free-up-space-device-copy': [1, 'Google 포토의 정리 범위', '기기 공간 확보: 백업된 기기 사본 정리', '포토 휴지통: 보관함에도 영향', '갤러리 연동: 적용 조건 따로 확인'],
   'firefox-https-only-secure-site-warning': [1, 'Firefox 연결 경고', '경고 화면에 나온 주소를 다시 확인', '확인되기 전에는 로그인 정보 입력 보류'],
   'gmail-undo-send-window-settings': [1, 'Gmail 보내기 취소', '발송 직후 화면 왼쪽 아래에서 실행취소', '미리 모든 설정에서 취소 시간 선택'],
   'windows-storage-sense-downloads-setting': [1, 'Windows 저장소 센스', '휴지통과 다운로드 조건을 각각 확인', '보관할 다운로드 파일의 위치 확인'],

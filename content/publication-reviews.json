@@ -38,24 +38,28 @@
     }
   },
   "google-photos-free-up-space-device-copy": {
-    "digest": "320524299081d03a26b22fdd5984e878ce1480dff8842e4441892127eb784b8b",
-    "reviewedAt": "2026-11-16",
-    "readerTask": "기기 공간 확보와 보관함 삭제의 영향을 나누어 판단하기",
-    "distinctValue": "휴대전화 공간 일반 정리 글보다 Google 포토에서 사라지는 사본의 위치를 구체적으로 비교합니다.",
-    "practicalCheck": "중요한 사진은 같은 계정의 다른 화면에서 백업을 확인한 후 정리하도록 합니다.",
-    "limitations": "실제 사진을 삭제하거나 백업 설정을 바꾸지 않았고 제조사 갤러리의 모든 동작을 시험하지 않았습니다.",
-    "evidenceType": "official-documents",
-    "sourceUrls": [
-      "https://support.google.com/photos/answer/6128843?hl=ko",
-      "https://support.google.com/photos/answer/6128858?hl=ko"
-    ],
+    "readerTask": "사진이 보이는 상태와 백업을 구분하고 기기 공간 확보·포토 삭제·삼성 갤러리 연동 삭제의 영향을 비교해 정리를 진행할지 결정합니다.",
+    "distinctValue": "갤럭시 저장공간 일반 글과 달리 개별 항목 백업 근거, 세 종류 삭제 범위, 일부 삼성 Google 연동의 적용 조건과 오프라인 사본 판단을 다룹니다.",
+    "practicalCheck": "기기/계정 공간부터 고르는 비파괴 확인 순서, 작업별 네 줄 비교표, 사본 위치 메모와 명확한 중단 조건을 제공합니다. 실제 사진 실험이나 확보 용량을 제시하지 않습니다.",
+    "limitations": "Google 공개 원문 네 개를 직접 읽고 전체/항목 백업, 기기 사본 정리, 삭제 영향, Android 17 호환 삼성 기기·개인 계정·지역 조건의 갤러리 연동을 대조했습니다. 갤럭시 실기·개인 계정·사진·백업·동기화·오프라인·용량 측정은 수행하지 않았습니다.",
     "comparedWith": [
       "phone-storage-before-delete",
       "onedrive-cloud-vs-green-check-offline"
     ],
+    "digest": "030d444e7d2c34ddd921b2d166dc4a6af32953e7fb1e7c3fa88c0e57b6e2eee9",
+    "reviewedAt": "2026-11-27",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://support.google.com/photos/answer/6128843?hl=ko&co=GENIE.Platform%3DAndroid",
+      "https://support.google.com/photos/answer/6128858?hl=ko&co=GENIE.Platform%3DAndroid",
+      "https://support.google.com/photos/answer/6193313?hl=ko&co=GENIE.Platform%3DAndroid",
+      "https://support.google.com/photos/answer/17592870?hl=ko"
+    ],
     "sourceDates": {
-      "https://support.google.com/photos/answer/6128843?hl=ko": "2026-11-09",
-      "https://support.google.com/photos/answer/6128858?hl=ko": "2026-11-09"
+      "https://support.google.com/photos/answer/6128843?hl=ko&co=GENIE.Platform%3DAndroid": "2026-11-27",
+      "https://support.google.com/photos/answer/6128858?hl=ko&co=GENIE.Platform%3DAndroid": "2026-11-27",
+      "https://support.google.com/photos/answer/6193313?hl=ko&co=GENIE.Platform%3DAndroid": "2026-11-27",
+      "https://support.google.com/photos/answer/17592870?hl=ko": "2026-11-27"
     }
   },
   "firefox-https-only-secure-site-warning": {
@@ -337,5 +341,30 @@
       "google-connected-apps-review"
     ],
     "digest": "89fee944b4bd7aec11cb8861e3dfd3a88994b1161ec7bd8fd76dbc56887b33f2"
+  },
+  "phone-storage-before-delete": {
+    "readerTask": "갤럭시 저장공간에서 큰 항목을 먼저 읽고 앱 데이터·사진을 건드리기 전에 확인할 대상과 중단 조건을 결정합니다.",
+    "distinctValue": "일반 Pixel 경로 대신 갤럭시 공식 경로로 범위를 좁히고 앱 다운로드/캐시/데이터 및 사진 연동의 삭제 범위를 분기합니다. Google 포토 상세 글과 역할을 구분합니다.",
+    "practicalCheck": "여유 공간/가장 큰 항목/확인 대상의 메모, 세 가지 상황 표와 삭제 없이 종료할 수 있는 중단 기준을 제시합니다. 실제 확보 용량을 꾸며 쓰지 않습니다.",
+    "limitations": "삼성 저장공간 경로와 데이터 삭제 영향, Google 백업 표시 및 삼성 갤러리 동기화 조건의 공개 원문을 읽었습니다. 갤럭시 실기·개인 사진·앱 정리·백업 설정·공간 전후 측정은 수행하지 않았습니다.",
+    "comparedWith": [
+      "google-photos-free-up-space-device-copy",
+      "chrome-download-history-vs-files"
+    ],
+    "digest": "9e0ba8e9a66c6889d5f2835d79814d6de85e7415b11bd5e6dc2b1ee507327e3e",
+    "reviewedAt": "2026-11-27",
+    "evidenceType": "official-documents",
+    "sourceUrls": [
+      "https://www.samsungsvc.co.kr/solution/4667987",
+      "https://www.samsungsvc.co.kr/solution/617801",
+      "https://support.google.com/photos/answer/6193313?hl=ko&co=GENIE.Platform%3DAndroid",
+      "https://support.google.com/photos/answer/17592870?hl=ko"
+    ],
+    "sourceDates": {
+      "https://www.samsungsvc.co.kr/solution/4667987": "2026-11-27",
+      "https://www.samsungsvc.co.kr/solution/617801": "2026-11-27",
+      "https://support.google.com/photos/answer/6193313?hl=ko&co=GENIE.Platform%3DAndroid": "2026-11-27",
+      "https://support.google.com/photos/answer/17592870?hl=ko": "2026-11-27"
+    }
   }
 }
